@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../js/config.js" css="css/user.css,css/configPorformanceParam.css" js="/js/move.js,/js/treeTable.js,/js/pager.js,/js/leftMenu.js;/js/head.js,js/configPorformanceParam.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-wrap">
+            <img class="logo-img" src="../img/logo.png">
+            <span class="company-name big-font">KONE ESCALATOR INTEGRATE PERFORMANCE TEST SYSTEM</span>
+        </div>
+    </div>
+    <div class="main-left">
+    </div>
+    <div class="main">
+        <div class="main-header">
+            <div class="page-path">
+                <i class="home-icon"></i>
+                <span class="s-font">Current status: </span>
+                <span class="s-font">Performance index</span>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="page-title">Performance index</div>
+            <div class="table-div">
+                <table cellpadding="0" cellspacing="0" id="data_table">
+                </table>
+            </div>
+            <div id="pager" class="wPaging_1"></div>
+            <div class="btn-div">
+                <a href="javascript:;" class="com-btn2" id="add_porformance">Add</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/tpl" id="popu">
+        <div class="popu-div" style="width: {#width}">
+            <div class="popu-title popu-blue-title">{#title}
+                <a href="javascript:;" class="close-popu delete-btn"></a>
+            </div>
+            <div class="popu-content">{#content}</div>
+        </div>
+    </script>
+    <script type="text/tpl" id="addPorformance">
+        <div class="popu-table-div">
+            <div class="config-porformance-param-wrap">
+                <div>
+                    <table class="config-params-table config-params-table1" cellspacing="0" cellpadding="0"></table>
+                </div>
+                <div style="margin-top:20px;">
+                    <div>Signal validity</div>
+                    <table class="config-params-table config-params-table2" cellspacing="0" cellpadding="0"></table>
+                </div>
+                <div style="margin-top:20px;">
+                    <div>Energy rating parameter</div>
+                    <table class="config-params-table config-params-table3" cellspacing="0" cellpadding="0"></table>
+                </div>
+                <div style="margin-top:20px;">
+                    <div>Cascade vibration parameter</div>
+                    <table class="config-params-table config-params-table4" cellspacing="0" cellpadding="0"></table>
+                </div>
+                <div style="margin-top:20px;">
+                    <div>Noise parameter</div>
+                    <table class="config-params-table config-params-table5" cellspacing="0" cellpadding="0"></table>
+                </div>
+                <div style="margin-top:20px;">
+                    <div>Armrest vibration parameter</div>
+                    <table class="config-params-table config-params-table6" cellspacing="0" cellpadding="0"></table>
+                </div>
+            </div>
+            <div class="red-error-1" style="margin-left: 20px;"></div>
+            <div style="text-align: center;margin-top:10px;">
+                <a class="com-btn2 submit-btn">Svae</a>
+            </div>
+        </div>
+    </script>
+</body>
+
+</html>

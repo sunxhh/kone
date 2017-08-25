@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../js/config.js" css="/manage/css/user.css,css/testDetail.css" js="/js/testData.js,/js/pdf/jspdf.debug.js,/js/move.js,/js/treeTable.js,/js/pager.js,/js/leftMenu.js;/js/pdf/html2canvas.min.js;/js/head.js,js/testDetail.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-wrap">
+            <img class="logo-img" src="../img/logo.png">
+            <span class="company-name big-font">KONE ESCALATOR INTEGRATE PERFORMANCE TEST SYSTEM</span>
+        </div>
+    </div>
+    <div class="main-left">
+    </div>
+    <!--startprint1-->
+    <div class="main">
+        <div class="main-header">
+            <div class="page-path">
+                <i class="home-icon"></i>
+                <span class="s-font">Current status: </span>
+                <span class="s-font">Test report</span>
+            </div>
+        </div>
+        <div class="main-body main-body1" style="position:relative;">
+            <div class="page-title">Test report</div>
+            <a id="download_pdf_btn" class="com-btn3" style="position: absolute;
+right: 33px;top: 19px;">Download PDF</a>
+        </div>
+        <div class="main-body main-body1" id="lift_detail" style="margin-top: 5px;text-align: center;">
+            <div style="text-align:center;" class="page-title-1">————————————&nbsp;&nbsp;&nbsp;<span id="test_name">Test record</span>&nbsp;&nbsp;&nbsp;—————————————</div>
+            <div class="" style="text-align:center;">
+                <span>Test time:</span><span class="test-time" id="test_time">2016-12-44</span>
+                <span>Tester:</span><span id="test_operator">cxl</span>
+            </div>
+            <div class="escalator-info-wrap">
+                <div class="page-title-1 row-title">Product information：</div>
+                <div class="escalator-outdiv">
+                </div>
+            </div>
+        </div>
+        <div class="main-body main-body1" style="margin-top: 5px;margin-top: 25px;display: none;">
+            <div class="page-title-1 row-title">Parameter details：</div>
+            <div class="table-div">
+                <table cellpadding="0" cellspacing="0" id="porformance_table">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="main-body main-body1" style="margin-top: 5px;margin-top: 25px;">
+            <div class="page-title-1 row-title">Testing procedure：</div>
+            <div class="table-div">
+                <table cellpadding="0" cellspacing="0" id="step_table">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="main-body main-body1" style="margin-top: 5px;margin-top: 25px;">
+            <div class="page-title-1 row-title">重测记录：</div>
+            <div class="table-div">
+                <table cellpadding="0" cellspacing="0" id="retest_table">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="main-body main-body1" id="test_report" style="margin-top: 5px;margin-top: 25px;">
+            <div class="page-title-1 row-title">Test report</div>
+            <div class="escalator-info-wrap">
+                <table class="reportTable">
+                    <tr>
+                        <td align="left" style="text-indent:20px;">
+                            <b>舒适性测试项目Ride Comfort Performance Items：</b>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><b>测试内容Contents</b></td>
+                        <td><b>评估项次Item</b></td>
+                        <td><b>测试数据Data</b></td>
+                        <td><b>单位Unit</b></td>
+                        <td><b>参考结论Result</b></td>
+                    </tr>
+                    <!-- <tr>
+                        <td>梯级速度Speed</td>
+                        <td>梯级速度Step Speed</td>
+                        <td id="speed"></td>
+                        <td>m/s</td>
+                        <td></td>
+                    </tr> -->
+                    <tr>
+                        <td>速度平均值Speed</td>
+                        <td>Speed</td>
+                        <td id="avgspeed"></td>
+                        <td>m/s</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>梯级振动上行Step up</td>
+                        <td>Vmax</td>
+                        <td id="floorleverupvmax"></td>
+                        <td>mg</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>梯级振动下行Step down</td>
+                        <td>Vmax</td>
+                        <td id="floorleverdownvmax"></td>
+                        <td>mg</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>左侧扶手带振动上行Left handrail up</td>
+                        <td>Vmax</td>
+                        <td id="lefthandrialupvmax"></td>
+                        <td>mg</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>左侧扶手带振动下行Left handrail down</td>
+                        <td>Vmax</td>
+                        <td id="lefthandrialdownvmax"></td>
+                        <td>mg</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>右侧扶手带振动上行Right handrail up</td>
+                        <td>Vmax</td>
+                        <td id="righthandrialupvmax"></td>
+                        <td>mg</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>右侧扶手带振动下行Right handrail down</td>
+                        <td>Vmax</td>
+                        <td id="righthandrialdownvmax"></td>
+                        <td>mg</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>上部踏板振动Up Floor</td>
+                        <td>Vmax</td>
+                        <td id="shuchibanupvmax"></td>
+                        <td>mg</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>下部踏板振动Down Floor</td>
+                        <td>Vmax</td>
+                        <td id="shuchibandownvmax"></td>
+                        <td>mg</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>上部噪音上行Up Noise (up)</td>
+                        <td>噪音</td>
+                        <td id="upnoisevmax"></td>
+                        <td>dB(A)</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>上部噪音下行Up Noise (down)</td>
+                        <td>噪音</td>
+                        <td id="upnoisevmax2"></td>
+                        <td>dB(A)</td>
+                        <td></td>
+                    </tr>
+                    <!-- <tr>
+                        <td>上部噪音Up Noise (average)</td>
+                        <td>噪音</td>
+                        <td id="upnoisevmax"></td>
+                        <td>dB(A)</td>
+                        <td></td>
+                    </tr> -->
+                    <tr>
+                        <td>中部噪音上行Center Noise (up)</td>
+                        <td>噪音</td>
+                        <td id="midnoisevmax"></td>
+                        <td>dB(A)</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>中部噪音下行Center Noise (down)</td>
+                        <td>噪音</td>
+                        <td id="midnoisevmax2"></td>
+                        <td>dB(A)</td>
+                        <td></td>
+                    </tr>
+                    <!-- <tr>
+                        <td>中部噪音Center Noise (average)</td>
+                        <td>噪音</td>
+                        <td id="midnoisevmax"></td>
+                        <td>dB(A)</td>
+                        <td></td>
+                    </tr> -->
+                    <tr>
+                        <td>下部噪音上行Down Noise (up)</td>
+                        <td>噪音</td>
+                        <td id="downnoisevmax"></td>
+                        <td>dB(A)</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>下部噪音下行Down Noise (down)</td>
+                        <td>噪音</td>
+                        <td id="downnoisevmax2"></td>
+                        <td>dB(A)</td>
+                        <td></td>
+                    </tr>
+                    <!-- <tr>
+                        <td>下部噪音Down Noise (average)</td>
+                        <td>噪音</td>
+                        <td id="downnoisevmax"></td>
+                        <td>dB(A)</td>
+                        <td></td>
+                    </tr> -->
+                    <tr>
+                        <td align="left" style="text-indent:20px;">
+                            <b>能耗测试项目Ride Comfort Performance Items：</b>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><b>测试内容Contents</b></td>
+                        <td><b>评估项次Item</b></td>
+                        <td><b>测试数据Data</b></td>
+                        <td><b>单位Unit</b></td>
+                        <td><b>参考结论Result</b></td>
+                    </tr>
+                    <tr>
+                        <td>满速上行能耗Up Power</td>
+                        <td>平均功率Average</td>
+                        <td id="engvalue"></td>
+                        <td>KW</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>满速下行能耗Down Power</td>
+                        <td>平均功率Average</td>
+                        <td id="engvaluedown"></td>
+                        <td>KW</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="btn-div">
+                <a class="com-btn3" id="printf">Print</a>
+            </div>
+        </div>
+    </div>
+    <!--endprint1-->
+    <script type="text/tpl" id="popu">
+        <div class="popu-div {#popuClass}" style="width: {#width};">
+            <div class="popu-title" style="text-align:center;">{#title}
+                <a href="javascript:;" class="close-popu delete-btn"></a>
+            </div>
+            <div class="popu-content">{#content}</div>
+        </div>
+    </script>
+    <script type="text/tpl" id="escalatorParam">
+        <div class="escalator-info">
+            <span>{#name}</span>:
+            <span>{#val}</span>
+        </div>
+    </script>
+    <script type="text/tpl" id="testReport">
+        <div class="report-table">
+            <table></table>
+        </div>
+        <div class="btn-div">
+            <a class="com-btn3 enable" style="margin-right:60px;">存入报告</a>
+            <a class="com-btn3 retest">重新测试</a>
+        </div>
+    </script>
+    <script type="text/tpl" id="print_pdf">
+        <div id="pdf-wrap">
+        </div>
+        <div style="text-align:center;height:30px;line-height:30px;">
+            <a id="download_pdf" class="com-btn3">Download PDF</a>
+        </div>
+    </script>
+</body>
+
+</html>

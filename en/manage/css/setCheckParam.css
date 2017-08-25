@@ -1,0 +1,11 @@
+.test-info-table tr td:first-child {
+    width: 200px;
+}
+
+.config-param table td span {
+    width: 50px;
+}
+
+.config-param table td {
+    padding: 14px 8px;
+}

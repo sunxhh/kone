@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../js/config.js" css="connectTest.css" js="/js/highcharts.js,/js/leftMenu.js,/js/sockjs-0.3.min.js;connectTest.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-wrap">
+            <img class="logo-img" src="../img/logo.png">
+            <span class="company-name big-font">KONE ESCALATOR INTEGRATE PERFORMANCE TEST SYSTEM</span>
+        </div>
+    </div>
+    <div class="main-left">
+    </div>
+    <div class="main">
+        <div class="main-header">
+            <div class="page-path">
+                <i class="home-icon"></i>
+                <span class="s-font">Current status: </span>
+                <span class="s-font">扶梯测试 &gt;</span>
+                <span class="s-font">硬件连接测试</span>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="page-title">硬件连接测试</div>
+            <div class="page-body">
+                <div class="connect-status" id="connect_text"></div>
+                <div class="test-btn-wrap">
+                    <div class="test-btn-div">
+                        <a href="javascript:;" class="com-btn4 test-btn" type="11">左侧扶手带振动</a>
+                    </div>
+                </div>
+                <div class="test-btn-div">
+                    <a href="javascript:;" class="com-btn4 test-btn" id="stop">停止测试</a>
+                </div>
+                <div class="charts-wrap">
+                    <div class="chart-div" id="sschart"></div>
+                </div>
+                <div class="test-btn-div">
+                    <div id="lamp_type_div">
+                        <label>
+                            <input type="radio" name="lamp" num="00">
+                            <span>绿灯</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="lamp" num="01">
+                            <span>黄灯</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="lamp" num="02">
+                            <span>红灯</span>
+                        </label>
+                    </div>
+                    <a href="javascript:;" class="com-btn4 test-btn" id="lamp">指示灯</a>
+                    <a href="javascript:;" class="com-btn4 test-btn" id="closelamp">关闭指示灯</a>
+                </div>
+                <div class="test-btn-div">
+                    <textarea id="ledtxt"></textarea>
+                    <a href="javascript:;" class="com-btn4 test-btn" id="ledbtn">LED屏幕测试</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/tpl" id="popu">
+        <div class="popu-div" style="width: {#width}">
+            <div class="popu-title popu-blue-title">{#title}
+                <!-- <a href="javascript:;" class="close-popu delete-btn"></a> -->
+            </div>
+            <div class="popu-content">{#content}</div>
+        </div>
+    </script>
+    <script type="text/tpl" id="unitbtn">
+        <a href="javascript:;" class="com-btn4 test-btn">{#unitname}</a>
+    </script>
+    <script type="text/tpl" id="test_step_popu">
+        <div class="test-step-div">测试步骤{#index}</div>
+    </script>
+</body>
+
+</html>

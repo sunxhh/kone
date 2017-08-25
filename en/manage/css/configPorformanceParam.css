@@ -1,0 +1,49 @@
+.config-porformance-param-wrap table {
+    width: 100%;
+}
+
+.config-porformance-param-wrap {
+    padding-left: 20px;
+}
+
+.config-porformance-param-wrap table td {
+    width: 50%;
+    padding: 6px 0px;
+}
+
+.config-porformance-param-wrap table td span {
+    display: inline-block;
+    width: 150px;
+    vertical-align: middle;
+}
+
+.popu-table-div tr td:first-child {
+    text-align: left;
+}
+
+.config-porformance-param-wrap table td input,
+.config-porformance-param-wrap table td select {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.config-porformance-param-wrap table td input[type=text] {
+    width: 200px;
+}
+
+.config-porformance-param-wrap table td input[type=checkbox] {
+    margin-right: 8px;
+    margin-top: 1px;
+    width:initial;
+}
+.config-porformance-param-wrap{
+    max-height: 400px;
+    overflow: auto;
+}
+.config-porformance-param-wrap table td select {
+    width: 214px;
+}
+.table-div table td{
+	text-align: left;
+	padding-left: 50px;
+}

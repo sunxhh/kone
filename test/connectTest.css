@@ -1,0 +1,46 @@
+.connect-status {
+    border-radius: 5px;
+    border: 1px solid #dbdbdb;
+    width: 400px;
+    color: #81be70;
+    font-size: 16px;
+    padding: 20px 30px;
+}
+
+.connect-status.error-status {
+    color: red;
+}
+
+.page-body {
+    margin-top: 30px;
+    margin-left: 30px;
+    padding-bottom: 30px;
+}
+
+.test-btn-div {
+    margin: 20px 0px;
+}
+
+.test-btn-div a {
+    margin-right: 15px;
+}
+
+.test-btn-div textarea {
+    border-radius: 5px;
+    border: 1px solid #dbdbdb;
+    width: 400px;
+    font-size: 16px;
+    padding: 20px 30px;
+    height: 80px;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 20px;
+}
+
+.chart-div {
+    height: 120px;
+}
+
+#lamp_type_div{
+    margin:15px 0px;
+}

@@ -1,0 +1,81 @@
+.tab-div {
+    border-bottom: 1px solid #dcdcdc;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.tab-div a {
+    height: 43px;
+    width: 130px;
+    text-align: center;
+    line-height: 43px;
+    background-color: #cdced0;
+    font-size: 16px;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px 5px 0px 0px;
+    color: #363636;
+    margin-right: 30px;
+}
+
+.tab-div a.selected {
+    background-color: #00a0d0;
+    color: #fff;
+}
+
+.btn-div {
+    margin-top: 22px;
+}
+
+.test-unit-left {
+    margin-top: 30px;
+    width: 55%;
+    display: inline-block;
+}
+
+.test-type-wrap {
+    margin-left: 30px;
+}
+
+.test-unit-left label,
+.test-unit-right label {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.test-unit-right {
+    margin-top: 30px;
+    width: 40%;
+    display: inline-block;
+    text-align: right;
+}
+
+.chart-div {
+    /*height: 400px;*/
+    margin-bottom: 40px;
+}
+
+.lift-info-div {
+    padding-top: 15px;
+    font-size: 14px;
+    padding-left: 30px;
+}
+
+.lift-info-div span {
+    margin-right: 15px;
+}
+
+.chart-btn {
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.hide-chart-btn {
+    background-color: #cdced0;
+    color: #333;
+}
+.chart-wrap{
+    height: 220px;
+}

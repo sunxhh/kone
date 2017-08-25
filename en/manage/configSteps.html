@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../js/config.js" css="css/configSteps.css" js="/js/move.js,/js/treeTable.js,/js/pager.js,/js/leftMenu.js;/js/head.js,js/configSteps.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-wrap">
+            <img class="logo-img" src="../img/logo.png">
+            <span class="company-name big-font">KONE ESCALATOR INTEGRATE PERFORMANCE TEST SYSTEM</span>
+        </div>
+    </div>
+    <div class="main-left">
+    </div>
+    <div class="main">
+        <div class="main-header">
+            <div class="page-path">
+                <i class="home-icon"></i>
+                <span class="s-font">Current status: </span>
+                <span class="s-font">Procedure configuration</span>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="page-title">Procedure configuration</div>
+            <div class="main-body-head">New Procedure</div>
+            <div class="table-div">
+                <table cellpadding="0" cellspacing="0" id="data_table">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="pager" class="wPaging_1"></div>
+            <div class="btn-div">
+                <a href="javascript:;" class="com-btn2" id="add_btn">New Procedure</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/tpl" id="popu">
+        <div class="popu-div" style="width: {#width}">
+            <div class="popu-title">{#title}
+                <a href="javascript:;" class="close-popu delete-btn"></a>
+            </div>
+            <div class="popu-content">{#content}</div>
+        </div>
+    </script>
+    <script type="text/tpl" id="add_popu_1">
+        <div class="config-name-wrap">
+            <div>
+                <span>Configuration name：</span>
+                <input type="text">
+            </div>
+            <div class='red-error-1' style="text-align: left;margin-left: 20px;margin-top:30px;"></div>
+            <div class="footer-btn-div">
+                <a href="javascript:;" class="com-btn2 submit-btn">Next</a>
+            </div>
+        </div>
+    </script>
+    <script type="text/tpl" id="add_step">
+        <div class="add-step-div">
+            <div class="test-unit-div add-step-module" style="margin-bottom: 20px;">
+                <div class="add-step-module-title">Test Unit</div>
+                <div class="add-step-module-body">
+                </div>
+            </div>
+            <div class="test-time-div add-step-module">
+                <div class="add-step-module-title">Stop Type</div>
+                <div class="add-step-module-body">
+                    <label>
+                        <input type="radio" status="0" name="test_time" checked="checked">
+                        <span>auto</span>
+                    </label>
+                    <label>
+                        <input type="radio" status="1" name="test_time">
+                        <input type="text" id="stop_staircase_time">M
+                    </label>
+                    <label>
+                        <input type="radio" status="2" name="test_time">
+                        <select id="stop_staircase_num"></select>circle
+                    </label>
+                </div>
+            </div>
+            <div class="device-config-div add-step-module">
+                <div class="add-step-module-title">Device control</div>
+                <div class="add-step-module-body">
+                    <label>
+                        <input type="radio" status="00" name="device_run_type" checked="checked">
+                        <span>Up</span>
+                    </label>
+                    <label>
+                        <input type="radio" status="01" name="device_run_type">
+                        <span>Down</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="red-error-1" style="margin-left: 50px;"></div>
+        <div class="footer-btn-div">
+            <a href="javascript:;" class="com-btn2 submit-btn">OK</a>
+        </div>
+    </script>
+    <script type="text/tpl" id="test_unit">
+        <label>
+            <input did="{#id}" dlifttype="{#lifttype}" dname="{#unitname}" type="checkbox" {#checked|defaultChecked}>
+            <span>{#unitname}</span>
+        </label>
+    </script>
+    <script type="text/tpl" id="continue_add">
+        <div class="continue-add-step">
+            <a href="javascript:;" class="com-btn2 not-add-btn" style="margin-right: 60px;">Not added</a>
+            <a href="javascript:;" class="com-btn2 continue-add-btn">Add next steps</a>
+        </div>
+    </script>
+</body>
+
+</html>

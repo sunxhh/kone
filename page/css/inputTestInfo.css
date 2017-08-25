@@ -1,0 +1,146 @@
+.config-param table {
+    width: 100%;
+}
+
+.config-param {
+    padding-left: 20px;
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+
+.config-param table td {
+    padding: 10px 8px;
+}
+
+.config-param table td span {
+    display: inline-block;
+    width: 150px;
+    vertical-align: middle;
+}
+
+.popu-table-div tr td:first-child {
+    text-align: left;
+}
+
+.config-param table td input,
+.config-param table td select {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.config-param table td input[type=text] {
+    width: 250px;
+}
+
+.config-param table td input[type=checkbox] {
+    margin-right: 8px;
+    margin-top: 1px;
+    width: initial;
+}
+
+.config-param table td select {
+    width: 264px;
+}
+
+.table-div table td {
+    text-align: left;
+    padding-left: 50px;
+}
+
+#back_last_step {
+    margin-right: 40px;
+}
+
+.step-wrap {
+    padding: 30px;
+}
+
+.one-step-wrap {
+    background-color: #f0f4f7;
+    border-radius: 10px;
+    display: inline-block;
+    width: 205px;
+    min-height: 350px;
+    vertical-align: top;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+
+.one-step-wrap .one-step-head {
+    height: 64px;
+    line-height: 64px;
+    margin: 0px 10px;
+    border-bottom: 1px solid #dcdcdc;
+    position: relative;
+}
+
+.one-step-wrap .one-step-head span {
+    color: #fff;
+    font-size: 18px;
+    text-indent: 15px;
+    left: -15px;
+    top: 14px
+}
+
+.flag-icon {
+    background-image: url("/img/flag_icon.png");
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.one-step-wrap .one-step-row {
+    font-size: 16px;
+    color: #666666;
+    margin: 30px 35px;
+}
+
+.one-step-wrap .one-step-row span {
+    line-height: 26px;
+}
+
+.main-body {
+    padding-bottom: 30px;
+    font-size: 14px;
+}
+
+.test-info-table-wrap .test-info-title {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.test-info-table-wrap .test-info-title {
+    color: rgb(136, 136, 136);
+}
+
+.has-handrail-td {
+    width: 100%;
+}
+
+table td.has-handrail-td span {
+    width: 210px;
+}
+
+#back_btn {
+    margin-right: 10px;
+}
+
+#info_preview_wrap {
+    margin-left: 25px;
+    padding-bottom: 15px;
+}
+
+.info-div {
+    display: inline-block;
+    width: 210px;
+    font-size: 14px;
+    line-height: 35px;
+    height: 35px
+}
+
+.two-info-div {
+    width: 360px;
+}

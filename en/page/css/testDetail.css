@@ -1,0 +1,78 @@
+.page-title {
+    border-bottom: 0;
+}
+
+.page-title-1 {
+    color: #333;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.test-time {
+    margin-right: 40px;
+}
+
+.escalator-info-wrap {
+    text-align: left;
+}
+
+.escalator-outdiv {
+    width: 88%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 20px;
+}
+
+.escalator-info {
+    font-size: 14px;
+    display: inline-block;
+    /*margin-right: 60px;*/
+    width: 33%;
+    height: 50px;
+    line-height: 50px;
+}
+
+.row-title {
+    text-indent: 56px;
+}
+
+.report-table {
+    margin: 20px 30px;
+    font-size: 14px;
+    max-height: 450px;
+}
+
+.report-table td {
+    text-align: center;
+}
+
+.reportTable {
+    width: 80%;
+    text-align: center;
+    border-collapse: collapse;
+    padding: 0 10%;
+    margin: 0 auto;
+}
+
+.reportTable td {
+    height: 48px;
+    font-size: 14px;
+    vertical-align: middle;
+    font-family: 'Microsoft yahei';
+    border: 1px solid #dcdcdc;
+}
+
+#step_table tr td:first-child {
+    text-align: left;
+    padding-left: 76px;
+    width: 50px;
+}
+.pdf-popu{
+    width: 80%;
+    height: 90%;
+    overflow: auto;
+}
+#pdf-wrap{
+    background-color:#fff; 
+}

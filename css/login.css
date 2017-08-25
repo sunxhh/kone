@@ -1,0 +1,106 @@
+/*login*/
+
+html,
+body {
+    min-height: 600px;
+}
+body{
+    background-color: #fff;
+}
+.login-wrap {
+    width: 330px;
+    position: fixed;
+    left: 50%;
+    margin-left: -165px;
+    top: 50%;
+    margin-top: -114px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.login-wrap .login-row {
+    height: 45px;
+    position: relative;
+    border-bottom: 1px solid #dadada;
+}
+
+.login-wrap .login-row input {
+    height: 45px;
+    line-height: 45px;
+    margin-left: 45px;
+    margin-right: 45px;
+    display: block;
+    outline: 0;
+    width: 230px;
+    border: 0;
+    font-size: 14px;
+    padding: 0px;
+}
+
+.username-icon {
+    height: 45px;
+    width: 45px;
+    background-position: center;
+    background-image: url("../img/user_icon.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+}
+
+.password-icon {
+    height: 45px;
+    width: 45px;
+    background-position: center;
+    background-image: url("../img/unlock_stroke.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+}
+
+.login-wrap .login-row .delete-btn {
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.login-wrap .remember-pass-div {
+    margin-top: 10px;
+    margin-left: 30px;
+    display: inline-block;
+}
+
+.login-wrap .remember-pass-div input,
+.login-wrap .remember-pass-div span {
+    vertical-align: middle;
+}
+
+.login-wrap .remember-pass-div span {
+    display: inline;
+    color: #666;
+    font-size: 14px;
+    margin-left: 5px;
+    font-family: "宋体";
+}
+
+.password-row {
+    margin-top: 15px;
+}
+
+.login-btn-div {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-wrap .red-error-1 {
+    margin-top: 10px;
+    margin-left: 30px;
+}
+.big-font{
+    color: #fff;
+}
+.header{
+    background-color: #20232a;
+}

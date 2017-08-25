@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../js/config.js" css="/manage/css/user.css,css/inputTestInfo.css" js="/js/move.js,/js/treeTable.js,/js/pager.js,/js/leftMenu.js;/js/head.js,js/inputTestInfo.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-wrap">
+            <img class="logo-img" src="../img/logo.png">
+            <span class="company-name big-font">通力扶梯综合性能测试系统</span>
+        </div>
+    </div>
+    <div class="main-left">
+    </div>
+    <div class="main">
+        <div class="main-header">
+            <div class="page-path">
+                <i class="home-icon"></i>
+                <span class="s-font">当前位置 :</span>
+                <span class="s-font">扶梯测试</span>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="page-title">被测梯参数输入</div>
+            <div class="tab-div1 config-param" id="input_test_info_wrap" style="padding-left: 40px;">
+                <div id="tables_outdiv">
+                    <!-- <table class="test-info-table" cellspacing="0" cellpadding="0"></table> -->
+                </div>
+                <div class="red-error-1" style="margin-left: 10px;"></div>
+                <div style="text-align: center;margin-top:10px;">
+                    <a class="com-btn2 submit-btn">下一步</a>
+                </div>
+            </div>
+            <div class="tab-div2" style="display: none;">
+                <div class="step-wrap">
+                    <div class="one-step-wrap">
+                        <div class="one-step-head">
+                            <span class="flag-icon">1</span>
+                        </div>
+                        <div class="one-step-body">
+                            <div class="one-step-row">
+                                <span>测试项目:</span>
+                                <span>能耗测试,测试项目</span>
+                            </div>
+                            <div class="one-step-row">
+                                <span>测试方式:</span>
+                                <span>并行</span>
+                            </div>
+                            <div class="one-step-row">
+                                <span>测试时间:</span>
+                                <span>auto</span>
+                            </div>
+                            <div class="one-step-row">
+                                <span>设备控制:</span>
+                                <span>扶梯上行</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;margin-top:10px;">
+                    <a class="com-btn2" id="back_last_step">返回上一步</a>
+                    <a class="com-btn2" id="begin_test">开始测试</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/tpl" id="popu">
+        <div class="popu-div" style="width: {#width}">
+            <div class="popu-title popu-blue-title">{#title}
+                <a href="javascript:;" class="close-popu delete-btn"></a>
+            </div>
+            <div class="popu-content">{#content}</div>
+        </div>
+    </script>
+    <script type="text/tpl" id="testStepPopu">
+        <div class="one-step-wrap">
+            <div class="one-step-head">
+                <span class="flag-icon">{#index}</span>
+            </div>
+            <div class="one-step-body">
+                <div class="one-step-row">
+                    <span>测试项目:</span>
+                    <span>{#unitnames}</span>
+                </div>
+                <!-- <div class="one-step-row">
+                    <span>测试方式:</span>
+                    <span>并行</span>
+                </div> -->
+                <div class="one-step-row">
+                    <span>测试时间:</span>
+                    <span>{#testtime}</span>
+                </div>
+                <div class="one-step-row">
+                    <span>设备控制:</span>
+                    <span>{#controltype|controltype}</span>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/tpl" id="inputTestInfoPopu">
+        <div class="test-info-table-wrap">
+            <div class="test-info-title">{#title}</div>
+            <div>
+                <table class="test-info-table" cellspacing="0" cellpadding="0"></table>
+            </div>
+        </div>
+    </script>
+    <script type="text/tpl" id="confirmPopu">
+        <div>
+            <div id="info_preview_wrap">
+                
+            </div>
+            <div style="text-align:center;">
+                <a href="javascript:;" class="com-btn3" id="back_btn">有错误，我要修改信息</a>
+                <a href="javascript:;" class="com-btn3" id="next_btn">没有错误，继续下一步</a>
+            </div>
+        </div>
+    </script>
+</body>
+
+</html>

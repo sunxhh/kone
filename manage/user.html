@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../js/config.js" css="css/user.css" js="/js/move.js,/js/treeTable.js,/js/pager.js,/js/leftMenu.js;/js/head.js,js/user.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-wrap">
+            <img class="logo-img" src="../img/logo.png">
+            <span class="company-name big-font">通力扶梯综合性能测试系统</span>
+            <div class="header-btn-wrapper">
+                <div class="header-user-info">
+                    <i class="user-icon"></i>
+                    <span class="header-username" style="margin-right: 20px;">张工</span>
+                    <a class="sign-out">退出登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-left">
+    </div>
+    <div class="main">
+        <div class="main-header">
+            <div class="page-path">
+                <i class="home-icon"></i>
+                <span class="s-font">当前位置 :</span>
+                <span class="s-font">用户管理</span>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="page-title">用户管理</div>
+            <div class="table-div">
+                <table cellpadding="0" cellspacing="0" id="data_table">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="pager" class="wPaging_1"></div>
+            <div class="btn-div">
+                <a href="javascript:;" class="com-btn2" id="add_user">新增操作员</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/tpl" id="popu">
+        <div class="popu-div" style="width: {#width}">
+            <div class="popu-title popu-blue-title">{#title}
+                <a href="javascript:;" class="close-popu delete-btn"></a>
+            </div>
+            <div class="popu-content">{#content}</div>
+        </div>
+    </script>
+    <script type="text/tpl" id="addUser">
+        <div id="add_update_user_info">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="33%">用户名：</td>
+                    <td>
+                        <input type="text" value="{#username}" {#username|hasUsername} id="username">
+                    </td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td>
+                        <input type="password" value="{#password}" id="password">
+                    </td>
+                </tr>
+                <tr>
+                    <td>确认密码：</td>
+                    <td>
+                        <input type="password" value="{#password}" id="comfirmPassword">
+                    </td>
+                </tr>
+                <tr>
+                    <td>操作员姓名：</td>
+                    <td>
+                        <input type="text" value="{#name}" id="name">
+                    </td>
+                </tr>
+            </table>
+            <div class="red-error-1" style="margin-left: 85px;"></div>
+            <div class="popo-btn-div">
+                <a href="javascript:;" class="com-btn2 submit-btn">提交</a>
+            </div>
+        </div>
+    </script>
+</body>
+
+</html>

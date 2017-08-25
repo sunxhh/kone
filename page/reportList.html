@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../js/config.js" css="/manage/css/user.css,css/analyTestData.css" js="/js/move.js,/js/treeTable.js,/js/pager.js,/js/leftMenu.js;/js/head.js,js/reportList.js"></script>
+    <style type="text/css">
+    tr{
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-wrap">
+            <img class="logo-img" src="../img/logo.png">
+            <span class="company-name big-font">通力扶梯综合性能测试系统</span>
+        </div>
+    </div>
+    <div class="main-left">
+    </div>
+    <div class="main">
+        <div class="main-header">
+            <div class="page-path">
+                <i class="home-icon"></i>
+                <span class="s-font">当前位置 :</span>
+                <span class="s-font">数据查询</span>
+            </div>
+        </div>
+        <div class="main-body main-body1" style="padding-bottom: 23px;">
+            <div class="page-title">数据查询</div>
+            <div class="btn-div" style="padding-bottom: 0px;text-align: left;margin-left: 80px;">
+                <span>请输入要查询的梯号：</span>
+                <input type="text" id="search_input" style="margin-right: 30px;">
+                <a class="com-btn3">确定</a>
+            </div>
+            <div class="table-div">
+                <table cellpadding="0" cellspacing="0" id="data_table">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="pager" class="wPaging_1"></div>
+        </div>
+    </div>
+    <script type="text/tpl" id="popu">
+        <div class="popu-div" style="width: {#width}">
+            <div class="popu-title popu-blue-title">{#title}
+                <a href="javascript:;" class="close-popu delete-btn"></a>
+            </div>
+            <div class="popu-content">{#content}</div>
+        </div>
+    </script>
+</body>
+
+</html>

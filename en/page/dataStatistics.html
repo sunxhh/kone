@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../js/config.js" css="css/dataStatistics.css" js="/js/leftMenu.js,/js/highcharts.js,/js/calendar/jedate.min.js,js/data.js;/js/head.js,js/dataStatistics.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-wrap">
+            <img class="logo-img" src="../img/logo.png">
+            <span class="company-name big-font">KONE ESCALATOR INTEGRATE PERFORMANCE TEST SYSTEM</span>
+        </div>
+    </div>
+    <div class="main-left">
+    </div>
+    <div class="main">
+        <div class="main-header">
+            <div class="page-path">
+                <i class="home-icon"></i>
+                <span class="s-font">Current status: </span>
+                <span class="s-font">Data Statistics</span>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="page-title">Data Statistics</div>
+            <div class="test-step-tab-wrap">
+                <div class="test-step-div">&nbsp;</div>
+            </div>
+        </div>
+        <div class="main-body" style="padding-top: 20px;text-align: center;padding-bottom: 20px;">
+            <div class="dataSelect">
+                <div class="dataChose">
+                    <input type="text" id="start_time" placeholder="Please select the start date">
+                    <input type="text" id="end_time" placeholder="Please select the end date">
+                </div>
+                <div class="typeChose">
+                    <select id="unit_select">
+                        <option>Please select the type of query</option>
+                    </select>
+                </div>
+                <a href="javascript:;" id="submint_btn">OK</a>
+            </div>
+            <div class="typeTitle" id="type_title">Left handrail vibration (up)</div>
+            <div class="tableChart">
+                <div class="dataStaTable" >
+                    <table id="level_table" style="display:none;">
+                        <tr>
+                            <td><b>Rating parameter</b></td>
+                            <td><b>A+++</b></td>
+                            <td><b>A++</b></td>
+                            <td><b>A+</b></td>
+                            <td><b>A</b></td>
+                            <td><b>B</b></td>
+                            <td><b>C</b></td>
+                            <td><b>D</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>Elevator quantity</b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <table id="level_table_o" style="display:none;">
+                        <tr>
+                            <td><b>Rating parameter</b></td>
+                            <td><b>AAA</b></td>
+                            <td><b>AA</b></td>
+                            <td><b>A</b></td>
+                            <td><b>U</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>Elevator quantity</b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="dataStaChart" id="chart_container">
+                    <div class="bg-chart-b"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/tpl" id="select_option">
+        <option lifttype="{#lifttype}" value="{#id}" commandtype="{#commandtype}">{#unitname}</option>
+    </script>
+    <script type="text/tpl" id="select_option">
+        <option lifttype="{#lifttype}" value="{#id}" commandtype="{#commandtype}">{#unitname}</option>
+    </script>
+    <script type="text/tpl" id="select_option2">
+        <option value="{#id}">{#name}</option>
+    </script>
+</body>
+
+</html>

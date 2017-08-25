@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../js/config.js" css="css/video.css" js="/js/leftMenu.js;/js/head.js,js/video.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-wrap">
+            <img class="logo-img" src="../img/logo.png">
+            <span class="company-name big-font">通力扶梯综合性能测试系统</span>
+        </div>
+    </div>
+    <div class="main-left">
+    </div>
+    <div class="main">
+        <div class="main-header">
+            <div class="page-path">
+                <i class="home-icon"></i>
+                <span class="s-font">当前位置 :</span>
+                <span class="s-font">音视频监控</span>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="page-title">音视频监控</div>
+            <div class="test-step-tab-wrap">
+                <div class="test-step-div">&nbsp;</div>
+            </div>
+        </div>
+        <div class="main-body" style="margin-top: 20px;text-align: center;margin-bottom: 20px;">
+            <video src="/video/testVideo.webm" controls="controls" width="720" height="540" id="video1">
+                your browser does not support the video tag
+            </video>
+        </div>
+    </div>
+    <script type="text/tpl" id="popu">
+        <div class="popu-div" style="width: {#width}">
+            <div class="popu-title popu-blue-title">{#title}
+                <!-- <a href="javascript:;" class="close-popu delete-btn"></a> -->
+            </div>
+            <div class="popu-content">{#content}</div>
+        </div>
+    </script>
+</body>
+
+</html>

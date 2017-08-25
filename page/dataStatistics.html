@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../js/config.js" css="css/dataStatistics.css" js="/js/leftMenu.js,/js/highcharts.js,/js/calendar/jedate.min.js,js/data.js;/js/head.js,js/dataStatistics.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-wrap">
+            <img class="logo-img" src="../img/logo.png">
+            <span class="company-name big-font">通力扶梯综合性能测试系统</span>
+        </div>
+    </div>
+    <div class="main-left">
+    </div>
+    <div class="main">
+        <div class="main-header">
+            <div class="page-path">
+                <i class="home-icon"></i>
+                <span class="s-font">当前位置 :</span>
+                <span class="s-font">数据统计</span>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="page-title">数据统计</div>
+            <div class="test-step-tab-wrap">
+                <div class="test-step-div">&nbsp;</div>
+            </div>
+        </div>
+        <div class="main-body" style="padding-top: 20px;text-align: center;padding-bottom: 20px;">
+            <div class="dataSelect">
+                <div class="dataChose">
+                    <input type="text" id="start_time" placeholder="请选择开始日期">
+                    <input type="text" id="end_time" placeholder="请选择结束日期">
+                </div>
+                <div class="typeChose">
+                    <select id="unit_select">
+                        <option>请选择查询的类型</option>
+                    </select>
+                </div>
+                <a href="javascript:;" id="submint_btn">确定</a>
+            </div>
+            <div class="typeTitle" id="type_title">左扶手带振动（上行）</div>
+            <div class="tableChart">
+                <div class="dataStaTable">
+                    <table id="level_table" style="display:none;">
+                        <tr>
+                            <td><b>评级参数</b></td>
+                            <td><b>A+++</b></td>
+                            <td><b>A++</b></td>
+                            <td><b>A+</b></td>
+                            <td><b>A</b></td>
+                            <td><b>B</b></td>
+                            <td><b>C</b></td>
+                            <td><b>D</b></td>
+                            <td><b>E</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>电梯数量</b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table id="level_table_o" style="display:none;">
+                        <tr>
+                            <td><b>评级参数</b></td>
+                            <td><b>AAA</b></td>
+                            <td><b>AA</b></td>
+                            <td><b>A</b></td>
+                            <td><b>U</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>电梯数量</b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table id="level_table_n" style="display:none;">
+                        <tr>
+                            <td><b>评级参数</b></td>
+                            <td><b>AAA</b></td>
+                            <td><b>AA</b></td>
+                            <td><b>A</b></td>
+                            <td><b>U</b></td>
+                            <td><b>NG</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>电梯数量</b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="dataStaChart" id="chart_container">
+                    <div class="bg-chart-b"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/tpl" id="select_option">
+        <option lifttype="{#lifttype}" value="{#id}" commandtype="{#commandtype}">{#unitname}</option>
+    </script>
+    <script type="text/tpl" id="select_option">
+        <option lifttype="{#lifttype}" value="{#id}" commandtype="{#commandtype}">{#unitname}</option>
+    </script>
+    <script type="text/tpl" id="select_option2">
+        <option value="{#id}">{#name}</option>
+    </script>
+</body>
+
+</html>

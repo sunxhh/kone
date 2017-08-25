@@ -1,0 +1,17 @@
+#add_update_user_info table {
+    width: 100%;
+}
+
+#add_update_user_info tr td:first-child {
+    text-align: right;
+}
+
+#add_update_user_info tr td {
+    padding: 10px 0;
+    font-size: 13px;
+}
+#add_update_user_info tr td input{
+	padding:3px 5px;
+	width: 250px;
+}
+

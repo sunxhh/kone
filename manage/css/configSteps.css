@@ -1,0 +1,70 @@
+.popu-title-1 {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.config-name-wrap {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.config-name-wrap input {
+    padding: 3px 5px;
+    width: 250px;
+}
+
+.footer-btn-div {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.popu-div {
+    background-color: #eeeeee;
+}
+
+.add-step-div {
+    margin: 5px 50px;
+    max-height: 450px;
+}
+
+.add-step-div .add-step-module {
+    margin-bottom: 40px;
+}
+
+.add-step-div .add-step-module-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.add-step-module-body label {
+    margin-right: 20px;
+    width: 210px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.test-unit-div label {
+    margin-bottom: 20px;
+}
+
+.add-step-module-body label input {
+    margin-right: 6px;
+}
+
+.add-step-module-body label input[type=text] {
+    width: 80px;
+}
+
+.add-step-module-body label input,
+.add-step-module-body label span {
+    vertical-align: middle;
+}
+
+.continue-add-step {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
