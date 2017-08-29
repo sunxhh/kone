@@ -275,6 +275,9 @@ pageStart(function(ajax) {
             $("#download_pdf_btn").click(function() {
                 printPDF();
             });
+            $("#viewTestData").click(function(){
+                location.href = "/page/escalatorData1.html?id=" + recordData.id;
+            });
         },
         // 启用
         enableRecord: function(obj) {

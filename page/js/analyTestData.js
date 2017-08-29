@@ -29,6 +29,7 @@ pageStart(function(ajax) {
                 td.style.textAlign = "left";
                 var btn = {
                     view: function() {
+                        sessionstorage.save(('report_' + obj.id), obj);
                         var a = document.createElement("a");
                         a.className = 'opt-btn mr30';
                         a.target = "_blank";
