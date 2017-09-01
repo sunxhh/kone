@@ -1,29 +1,29 @@
 void
 
-function() {
-    var sendAjax = function(url, data, success, fail, type) {
+function () {
+    var sendAjax = function (url, data, success, fail, type) {
         var callCode = {
-            "0": function(d) {
+            "0": function (d) {
                 success(d);
             },
-            "-105": function(d) {
+            "-105": function (d) {
                 alert("请登录后在操作");
                 location.href = '/login.html';
                 fail && fail(d);
             },
-            "-102": function(d) {
+            "-102": function (d) {
                 alert("您没有权限进行该操作");
                 fail && fail(d);
             },
-            "-103": function(d) {
+            "-103": function (d) {
                 alert("要添加的操作员已存在，不能重复添加！");
                 fail && fail(d);
             },
-            "-203": function(d) {
+            "-203": function (d) {
                 alert("该测试单元已存在，不能重复添加！");
                 fail && fail(d);
             },
-            "-20": function(d) {
+            "-20": function (d) {
                 alert(d.codeInfo);
                 fail && fail(d);
             }
@@ -34,9 +34,9 @@ function() {
             type: type,
             url: url,
             data: data,
-            timeout: 20000, //  暂时先设置20秒延迟
+            timeout: 600000, //  暂时先设置600秒延迟
             dataType: "json",
-            success: function(d) {
+            success: function (d) {
                 var fn = callCode[d.code];
                 if (fn) {
                     fn(d);
@@ -45,15 +45,15 @@ function() {
                     fail && fail(d);
                 }
             },
-            error: function(d) {
+            error: function (d) {
                 fail && fail(d);
             }
         });
     };
 
-    var floatLayer = function(data, fn, tplId) {
+    var floatLayer = function (data, fn, tplId) {
         data.tpl = tpl.getDataTpl(tplId || "popu", data);
-        var dragFn = function(p) {
+        var dragFn = function (p) {
             var wrap = p.wrap;
             var dragData = {
                 dragAreaNode: p.mark,
@@ -66,7 +66,7 @@ function() {
             DragClass(dragData);
         }
         var callbackFn = data.callbackFn;
-        data.callbackFn = function(p) {
+        data.callbackFn = function (p) {
             callbackFn && callbackFn(p);
             dragFn && dragFn(p);
             fn && fn(p);
@@ -81,14 +81,14 @@ function() {
          * String username  //用户姓名
          * String password  //用户密码
          */
-        login: function(data, success, fail) {
+        login: function (data, success, fail) {
             var url = "/userLogin";
             sendAjax(url, data, success, fail, "get");
         },
         /**
          * 1.2 用户注销
          */
-        userLogout: function(success, fail) {
+        userLogout: function (success, fail) {
             var url = "/userLogout";
             sendAjax(url, {}, success, fail, "get");
         },
@@ -98,7 +98,7 @@ function() {
          * String password  //用户密码
          * String role      //0-操作员 1-管理员
          */
-        addUser: function(data, success, fail) {
+        addUser: function (data, success, fail) {
             var url = "/addUser";
             sendAjax(url, data, success, fail, "post");
         },
@@ -106,7 +106,7 @@ function() {
          * 1.4 删除用户
          * String uids  多个用","分隔
          */
-        removeUser: function(uids, success, fail) {
+        removeUser: function (uids, success, fail) {
             var url = "/removeUser";
             sendAjax(url, {
                 uids: uids
@@ -117,14 +117,14 @@ function() {
          * int  currentpage    //当前页
          * int  pagesize      //每页条目
          */
-        getUsers: function(data, success, fail) {
+        getUsers: function (data, success, fail) {
             var url = "/getUsers";
             sendAjax(url, data, success, fail, "get");
         },
         /**
          * 1.6 获取当前登录用户
          */
-        getCurrentUser: function(success, fail) {
+        getCurrentUser: function (success, fail) {
             var url = "/getCurrentUser";
             sendAjax(url, {}, success, fail, "get");
         },
@@ -135,7 +135,7 @@ function() {
          * String   newpassword // 新密码
          * String   confirmpassword //确认新密码
          */
-        modifyUser: function(data, success, fail) {
+        modifyUser: function (data, success, fail) {
             var url = "/modifyUser";
             sendAjax(url, data, success, fail, "post");
         },
@@ -145,7 +145,7 @@ function() {
          * String unitName //测试单元名称
          * String devicePort //设备端口
          */
-        addUnit: function(data, success, fail) {
+        addUnit: function (data, success, fail) {
             var url = "/addUnit";
             sendAjax(url, data, success, fail, "post");
         },
@@ -156,7 +156,7 @@ function() {
          * String devicePort //设备端口
          * String unitName //测试单元名称
          */
-        modifyUnit: function(data, success, fail) {
+        modifyUnit: function (data, success, fail) {
             var url = "/modifyUnit";
             sendAjax(url, data, success, fail, "post");
         },
@@ -164,7 +164,7 @@ function() {
          * 2.3 删除测试单元(设备绑定)
          * String unitId   //设备记录ID
          */
-        removeUnit: function(uids, success, fail) {
+        removeUnit: function (uids, success, fail) {
             var url = "/removeUnit";
             sendAjax(url, {
                 uids: uids
@@ -175,14 +175,14 @@ function() {
          * int  currentpage    //当前页
          * int  pagesize      //每页条目
          */
-        getUnits: function(data, success, fail) {
+        getUnits: function (data, success, fail) {
             var url = "/getUnits";
             sendAjax(url, data, success, fail, "get");
         },
         /**
          * 2.5 不分页查询测试单元
          */
-        queryUnits: function(success, fail) {
+        queryUnits: function (success, fail) {
             var url = "/queryUnits";
             sendAjax(url, {}, success, fail, "get");
         },
@@ -196,7 +196,7 @@ function() {
          * String   controlType  //设备控制，1-扶梯上行 0-扶梯下行
          * int     stepOrder   //步骤顺序，传现有步骤的最大顺序，没有为0
          */
-        addStep: function(data, success, fail) {
+        addStep: function (data, success, fail) {
             var url = "/addStep";
             sendAjax(url, data, success, fail, "post");
         },
@@ -208,7 +208,7 @@ function() {
          * String   testTime  //测试时间
          * String   controlType  //设备控制，1-扶梯上行 0-扶梯下行
          */
-        modifyStep: function(data, success, fail) {
+        modifyStep: function (data, success, fail) {
             var url = "/modifyStep";
             sendAjax(url, data, success, fail, "post");
         },
@@ -216,7 +216,7 @@ function() {
          * 4.3 删除步骤
          * Body String   sids// 测试步骤id，顿号分隔
          */
-        delStep: function(sids, success, fail) {
+        delStep: function (sids, success, fail) {
             var url = "/delStep";
             sendAjax(url, {
                 sids: sids
@@ -226,7 +226,7 @@ function() {
          * 4.4 根据步骤配置ID查询所配置步骤
          * Body int   id// 步骤配置ID
          */
-        getSteps: function(id, success, fail) {
+        getSteps: function (id, success, fail) {
             var url = "/getSteps";
             sendAjax(url, {
                 jobId: id
@@ -235,7 +235,7 @@ function() {
         /**
          * 4.5 查询已启用步骤配置
          */
-        getEnableSteps: function(success, fail) {
+        getEnableSteps: function (success, fail) {
             var url = "/getEnableSteps";
             sendAjax(url, {}, success, fail, "get");
         },
@@ -244,7 +244,7 @@ function() {
          * int  currentpage    //当前页
          * int  pagesize      //每页条目
          */
-        getJobs: function(data, success, fail) {
+        getJobs: function (data, success, fail) {
             var url = "/getJobs";
             sendAjax(url, data, success, fail, "get");
         },
@@ -252,7 +252,7 @@ function() {
          * 4.7 启用步骤配置
          * int   jobId //步骤配置ID
          */
-        enableJob: function(jobId, success, fail) {
+        enableJob: function (jobId, success, fail) {
             var url = "/enableJob";
             sendAjax(url, {
                 jobId: jobId
@@ -262,7 +262,7 @@ function() {
          * 4.8删除步骤配置
          * String jids //步骤配置ID,多个逗号分隔
          */
-        delJob: function(jids, success, fail) {
+        delJob: function (jids, success, fail) {
             var url = "/delJob";
             sendAjax(url, {
                 jids: jids
@@ -293,7 +293,7 @@ function() {
                 " energyalarm":"12",//能耗报警值 根据energyalarmtype来决定是否有该值
             }
          */
-        saveSet: function(data, success, fail) {
+        saveSet: function (data, success, fail) {
             var url = "/saveSet";
             var val = JSON.stringify(data);
             sendAjax(url, {
@@ -304,7 +304,7 @@ function() {
          * 5.2 启用性能指标设置
          *  String  setId  //配置ID
          */
-        enableSet: function(setId, success, fail) {
+        enableSet: function (setId, success, fail) {
             var url = "/enableSet";
             sendAjax(url, {
                 setId: setId
@@ -315,7 +315,7 @@ function() {
          *  int  currentpage
             int  pagesize
          */
-        getSets: function(data, success, fail) {
+        getSets: function (data, success, fail) {
             var url = "/getSets";
             sendAjax(url, data, success, fail, "get");
         },
@@ -323,7 +323,7 @@ function() {
          * 5.4 删除性能指标设置
          *  pids 
          */
-        delSet: function(pids, success, fail) {
+        delSet: function (pids, success, fail) {
             var url = "/delSet";
             sendAjax(url, {
                 pids: pids
@@ -349,7 +349,7 @@ function() {
             }
  
          */
-        saveElevator: function(data, success, fail) {
+        saveElevator: function (data, success, fail) {
             var url = "/saveElevator";
             data = JSON.stringify(data);
             sendAjax(url, {
@@ -359,7 +359,7 @@ function() {
         /**
          * 6.2 获取被测梯参数
          */
-        queryElevator: function(success, fail) {
+        queryElevator: function (success, fail) {
             var url = "/queryElevator";
             sendAjax(url, {}, success, fail, "get");
         },
@@ -369,7 +369,7 @@ function() {
                 int  pagesize
 
          */
-        getRecords: function(data, success, fail) {
+        getRecords: function (data, success, fail) {
             var url = "/getRecords";
             sendAjax(url, data, success, fail, "get");
         },
@@ -377,7 +377,7 @@ function() {
          * 7.2 启用数据分析
          * Body String  setId  //配置ID
          */
-        enableRecord: function(data, success, fail) {
+        enableRecord: function (data, success, fail) {
             var url = "/enableRecord";
             sendAjax(url, data, success, fail, "get");
         },
@@ -385,7 +385,7 @@ function() {
          * 7.3 删除数据分析
          * Body String  rids  //配置ID
          */
-        delRecord: function(rids, success, fail) {
+        delRecord: function (rids, success, fail) {
             var url = "/delRecord";
             sendAjax(url, {
                 rids: rids
@@ -395,7 +395,7 @@ function() {
          * 7.4 查询报告
          * Body int  recordId //数据分析记录ID
          */
-        queryReport: function(rids, success, fail) {
+        queryReport: function (rids, success, fail) {
             var url = "/queryReport";
             sendAjax(url, {
                 recordId: rids
@@ -405,7 +405,7 @@ function() {
          * 8.1 启用重测记录
          * int  recordId //重测记录ID
          */
-        enableReTestRecord: function(rids, success, fail) {
+        enableReTestRecord: function (rids, success, fail) {
             var url = "/enableReTestRecord";
             sendAjax(url, {
                 recordId: rids
@@ -415,7 +415,7 @@ function() {
          * 8.2 删除重测记录
          * String rids //多个用逗号分隔
          */
-        delReTestRecord: function(rids, success, fail) {
+        delReTestRecord: function (rids, success, fail) {
             var url = "/delReTestRecord";
             sendAjax(url, {
                 rids: rids
@@ -440,7 +440,7 @@ function() {
                 ]
             }
          */
-        queryReTestReport: function(rids, success, fail) {
+        queryReTestReport: function (rids, success, fail) {
             var url = "/queryReTestReport";
             sendAjax(url, {
                 recordId: rids
@@ -449,35 +449,35 @@ function() {
         /**
          * 8.4 判断测试是否成功
          */
-        isconnect: function(success, fail) {
+        isconnect: function (success, fail) {
             var url = "/test/connect";
             sendAjax(url, {}, success, fail, "get");
         },
         /**
          * 8.5 开机信息
          */
-        testLED1: function(success, fail) {
+        testLED1: function (success, fail) {
             var url = "/testLED1";
             sendAjax(url, {}, success, fail, "get");
         },
         /**
          * 8.6 测试中信息
          */
-        testLED2: function(success, fail) {
+        testLED2: function (success, fail) {
             var url = "/testLED2";
             sendAjax(url, {}, success, fail, "get");
         },
         /**
          * 8.7 测试完成信息
          */
-        testLED3: function(success, fail) {
+        testLED3: function (success, fail) {
             var url = "/testLED3";
             sendAjax(url, {}, success, fail, "get");
         },
         /**
          * 8.8 LED显示屏
          */
-        testLED4: function(text, success, fail) {
+        testLED4: function (text, success, fail) {
             var url = "/testLED4";
             sendAjax(url, {
                 text: text
@@ -486,14 +486,14 @@ function() {
         /**
          * 8.9 打开关闭指示灯
          */
-        testLED5: function(data, success, fail) {
+        testLED5: function (data, success, fail) {
             var url = "/testLED5";
             sendAjax(url, data, success, fail, "get");
         },
         /**
          * 9.0 查询校验参数的配置
          */
-        queryParam: function(success, fail) {
+        queryParam: function (success, fail) {
             var url = "/queryParam";
             sendAjax(url, {}, success, fail, "get");
         },
@@ -508,7 +508,7 @@ function() {
             @RequestParam(value = "NPlateIso", required = false) int NPlateIso)
 
          */
-        setParam: function(data, success, fail) {
+        setParam: function (data, success, fail) {
             var url = "/setParam";
             sendAjax(url, data, success, fail, "get");
         },
@@ -528,19 +528,28 @@ function() {
             @param  filterType 滤波 rms  iso
 
          */
-        queryData: function(data, success, fail) {
+        queryData: function (data, success, fail) {
             var url = "/queryData";
             sendAjax(url, data, success, fail, "get");
         },
         // 数据统计
-        queryDataCount: function(data, success, fail) {
+        queryDataCount: function (data, success, fail) {
             var url = "/queryDataCount";
             sendAjax(url, data, success, fail, "get");
+        },
+
+        // 数据统计
+        // 参数:
+        // reportid
+        // description
+        updateDescription: function (data, success, fail) {
+            var url = "/updateDescription";
+            sendAjax(url, data, success, fail, "post");
         }
     };
 
     window.ajax = ajax;
-    window.pageStart = function(fn) {
+    window.pageStart = function (fn) {
         fn && fn(ajax);
     };
 }();

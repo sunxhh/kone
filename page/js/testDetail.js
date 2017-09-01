@@ -1,4 +1,4 @@
-pageStart(function(ajax) {
+pageStart(function (ajax) {
     var recordData = getUrlRequest();
     // 打印
     function preview(oper) {
@@ -63,13 +63,13 @@ pageStart(function(ajax) {
         ],
         id: "id",
         body: {
-            index: function(td, obj) {
+            index: function (td, obj) {
                 td.innerText = "步骤" + obj.index;
             },
-            controltype: function(td, obj) {
+            controltype: function (td, obj) {
                 td.innerText = deviceControlTypeMap[obj.controltype];
             },
-            operate: function(td, obj) {
+            operate: function (td, obj) {
                 var a = document.createElement("a");
                 a.innerText = '重新测试';
                 td.appendChild(a);
@@ -99,13 +99,13 @@ pageStart(function(ajax) {
         }],
         id: "id",
         body: {
-            date: function(td, obj) {
+            date: function (td, obj) {
                 var date = new Date(obj.date);
                 td.innerText = date.format("YYYY-MM-DD");
             },
-            operate: function(td, obj) {
+            operate: function (td, obj) {
                 var btn = {
-                    view: function() {
+                    view: function () {
                         var a = document.createElement("a");
                         a.className = 'opt-btn mr30';
                         a.target = "_blank";
@@ -114,7 +114,7 @@ pageStart(function(ajax) {
                         var i = document.createElement("i");
                         i.className = "edit-icon";
                         a.appendChild(i);
-                        a.onclick = function() {
+                        a.onclick = function () {
                             page.getRetestRecord(obj.testrecordid);
                         };
                         var span = document.createElement("span");
@@ -122,7 +122,7 @@ pageStart(function(ajax) {
                         a.appendChild(span);
                         td.appendChild(a);
                     },
-                    use: function() {
+                    use: function () {
                         var a = document.createElement("a");
                         a.className = 'opt-btn mr30 use_this_config_btn';
                         a.id = "enable_btn_" + obj.testrecordid;
@@ -139,7 +139,7 @@ pageStart(function(ajax) {
                         a.appendChild(span);
                         td.appendChild(a);
 
-                        a.onclick = function() {
+                        a.onclick = function () {
                             page.enableRecord(obj);
                         }
                     }
@@ -178,13 +178,13 @@ pageStart(function(ajax) {
         }],
         id: "id",
         body: {
-            item: function(td, obj) {
+            item: function (td, obj) {
                 td.innerText = "VMAX";
             },
-            unit: function(td, obj) {
+            unit: function (td, obj) {
                 td.innerText = "mg";
             },
-            result: function(td, obj) {
+            result: function (td, obj) {
                 td.innerText = "无";
             },
         }
@@ -199,9 +199,9 @@ pageStart(function(ajax) {
             popuClass: data.popuClass,
             content: data.content,
             callbackFn: data.callbackFn
-        }, function(p) {
+        }, function (p) {
             var jQcloseBtn = $(p.wrap).find(".popu-title .close-popu");
-            jQcloseBtn.click(function() {
+            jQcloseBtn.click(function () {
                 p.close();
             });
             data.initFn && data.initFn(p);
@@ -216,17 +216,17 @@ pageStart(function(ajax) {
             width: "700px",
             title: "测试报告",
             content: tpl.getDataTpl("testReport"),
-            callbackFn: function(p) {
+            callbackFn: function (p) {
                 var wrap = p.wrap;
                 retestDetailTableOption.table = $(wrap).find("table")[0];
                 treeTable(list, retestDetailTableOption);
             },
-            initFn: function(p) {
+            initFn: function (p) {
                 var wrap = p.wrap;
-                $(wrap).find(".enable").click(function() {
+                $(wrap).find(".enable").click(function () {
                     page.enableRecord(list[0]);
                 });
-                $(wrap).find(".retest").click(function() {
+                $(wrap).find(".retest").click(function () {
 
                 });
 
@@ -237,14 +237,14 @@ pageStart(function(ajax) {
 
 
     // 生成table
-    var createTable = function(data, table, colNum, tdFn) {
+    var createTable = function (data, table, colNum, tdFn) {
         colNum = colNum || 3;
         $(table).empty();
-        var createTr = function() {
+        var createTr = function () {
             var tr = document.createElement("tr");
             return tr;
         }
-        var createTd = function(obj) {
+        var createTd = function (obj) {
             var td = document.createElement("td");
             tdFn(td, obj);
             return td;
@@ -264,26 +264,50 @@ pageStart(function(ajax) {
 
 
     var page = {
-        init: function() {
+        init: function () {
             this.bindle();
             this.getRecordDetail();
         },
-        bindle: function() {
-            $("#printf").click(function() {
+        bindle: function () {
+            var that = this;
+            $("#printf").click(function () {
                 preview();
             });
-            $("#download_pdf_btn").click(function() {
+            $("#download_pdf_btn").click(function () {
                 printPDF();
             });
-            $("#viewTestData").click(function(){
+            $("#viewTestData").click(function () {
                 location.href = "/page/escalatorData1.html?id=" + recordData.id;
             });
+            $("#submit_remark").click(function () {
+                that.updateDescription();
+            });
+        },
+        updateDescription: function () {
+            var that = this;
+            var description = $.trim($("#description_textarea").val());
+            if (description == "") {
+                alert("请输入备注信息");
+                return;
+            }
+            var reqData = {
+                reportid: recordData.id,
+                description: description
+            };
+            ajax.updateDescription(reqData, function (cbd) {
+                that.disabledTextarea();
+                alert("保存成功");
+            });
+        },
+        disabledTextarea: function () {
+            $("#description_textarea").attr("readonly","readonly");
+            $("#submit_remark").hide();
         },
         // 启用
-        enableRecord: function(obj) {
+        enableRecord: function (obj) {
             var a = $("#enable_btn_" + obj.testrecordid);
             var span = a.find("span");
-            ajax.enableReTestRecord(obj.testrecordid, function(cb) {
+            ajax.enableReTestRecord(obj.testrecordid, function (cb) {
                 alert("启用成功");
                 $(".selected_config").find("span").text(" 存入报告");
                 $(".selected_config").removeClass("selected_config");
@@ -292,15 +316,15 @@ pageStart(function(ajax) {
                 a.addClass("selected_config");
             });
         },
-        getRetestRecord: function(id) {
-            ajax.queryReTestReport(id, function(cb) {
+        getRetestRecord: function (id) {
+            ajax.queryReTestReport(id, function (cb) {
                 var data = cb.objects;
                 retestView(data);
             });
         },
-        getRecordDetail: function() {
+        getRecordDetail: function () {
             var that = this;
-            ajax.queryReport(recordData.id, function(cb) {
+            ajax.queryReport(recordData.id, function (cb) {
                 //cb = reportData;
                 var data = cb.objects;
                 $("#test_time").text(data.testdate);
@@ -313,7 +337,7 @@ pageStart(function(ajax) {
                 that.createReport(data.report);
             });
         },
-        createStepTable: function(data) {
+        createStepTable: function (data) {
             var list = [];
             var index = 0;
             for (var i = 0; i < data.length; i++) {
@@ -326,19 +350,19 @@ pageStart(function(ajax) {
             }
             this.stepTable = treeTable(list, stepTableOption);
         },
-        createRetestTable: function(data) {
+        createRetestTable: function (data) {
             data = data || [];
             this.retestTable = treeTable(data, retestTableOption);
         },
-        createPorformance: function(data) {
+        createPorformance: function (data) {
             $("#test_operator").text(data.operator);
             var list = validList.concat(levelList, vibrationList, noiseList, railVibrationList);
-            createTable(list, '#porformance_table', 3, function(td, obj) {
+            createTable(list, '#porformance_table', 3, function (td, obj) {
                 var text = obj.name + " : " + (data[obj.sendId] ? data[obj.sendId] : "");
                 td.innerText = text;
             });
         },
-        createEscalator: function(obj) {
+        createEscalator: function (obj) {
             var html = "";
             var jQwrap = $(".escalator-outdiv");
             var list1 = ["liftno", "productline", "speed", "height", "width", "inclination"];
@@ -364,7 +388,8 @@ pageStart(function(ajax) {
             }
             jQwrap.append(html);
         },
-        createReport: function(data) {
+        createReport: function (data) {
+            var that = this;
             data = data || {};
             for (var i = 0; i < reportIdList.length; i++) {
                 var cId = reportIdList[i];
@@ -391,14 +416,13 @@ pageStart(function(ajax) {
                     }
                     ele.text(dataVal);
                     levelEle.text(leval || '——');
-                    if(~id.indexOf('noise')){
-                        if(parseFloat(tofixedNumber(val))>68){
-                            ele.css("color","red");
-                            levelEle.css("color","red");
-                        }
-                        else{
-                            ele.css("color","black");
-                            ele.css("color","black");
+                    if (~id.indexOf('noise')) {
+                        if (parseFloat(tofixedNumber(val)) > 68) {
+                            ele.css("color", "red");
+                            levelEle.css("color", "red");
+                        } else {
+                            ele.css("color", "black");
+                            ele.css("color", "black");
                         }
                     }
                 } else {
@@ -406,6 +430,10 @@ pageStart(function(ajax) {
                     levelEle.text('——');
                 }
 
+            }
+            if(data.description){
+                $("#description_textarea").val(data.description);
+                that.disabledTextarea();
             }
         }
     };
@@ -419,14 +447,14 @@ pageStart(function(ajax) {
             width: "90%",
             popuClass: "pdf-popu",
             content: tpl.getDataTpl("print_pdf", {}),
-            initFn: function(p) {
+            initFn: function (p) {
                 var wrap = p.wrap;
                 var pdfWrap = $(wrap).find("#pdf-wrap");
                 pdfWrap.append($("#lift_detail")[0].innerHTML);
                 pdfWrap.append($("#test_report")[0].innerHTML);
                 pdfWrap.find("#printf").remove();
 
-                $(wrap).find("#download_pdf").click(function() {
+                $(wrap).find("#download_pdf").click(function () {
                     demoFromHTML(pdfWrap[0]);
                 });
             }
@@ -441,7 +469,7 @@ function demoFromHTML(node) {
     // 将 id 为 content 的 div 渲染成 canvas
     html2canvas(node, {
         // 渲染完成时调用，获得 canvas
-        onrendered: function(canvas) {
+        onrendered: function (canvas) {
             // 从 canvas 提取图片数据
             var imgData = canvas.toDataURL('image/jpeg');
 
