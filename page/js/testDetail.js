@@ -291,7 +291,7 @@ pageStart(function (ajax) {
                 return;
             }
             var reqData = {
-                reportid: recordData.id,
+                recordid: recordData.id,
                 description: description
             };
             ajax.updateDescription(reqData, function (cbd) {

@@ -26,6 +26,10 @@ function () {
             "-20": function (d) {
                 alert(d.codeInfo);
                 fail && fail(d);
+            },
+            "-824": function (d) {
+                alert("该测试未生成报告，无法增加备注!");
+                fail && fail(d);
             }
 
         };
