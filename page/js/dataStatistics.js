@@ -94,7 +94,7 @@ var units = {
     }
 }
 
-var getChartData = function(optList, type) {
+var getChartData = function (optList, type) {
     var llv = ['A+++', 'A++', 'A+', 'A', 'B', 'C', 'D', 'E']
     var lllo = ['AAA', 'AA', 'A', 'U'];
     var llln = ['AAA', 'AA', 'A', 'U', 'NG'];
@@ -103,7 +103,7 @@ var getChartData = function(optList, type) {
     if (type == "4") {
         ll = llv;
     }
-    
+
     if (type == "3") {
         ll = llln;
     }
@@ -127,28 +127,45 @@ var getChartData = function(optList, type) {
 
 
 var page = {
-    init: function() {
+    init: function () {
         this.bindle();
         //this.getList();
         this.showUnitSelect();
     },
-    bindle: function() {
+    bindle: function () {
         var that = this;
-        $("#unit_select").change(function() {
+        $("#unit_select").change(function () {
             that.showData();
         });
-        $("#submint_btn").click(function() {
+        $("#submint_btn").click(function () {
             that.getData();
         });
+        $("#download_btn").click(function () {
+            that.download();
+        });
     },
-    showData: function() {
+    download: function () {
+        var url = '/exportData.2x';
+        var start_time = $("#start_time").val();
+        var end_time = $("#end_time").val();
+        var type = $("#unit_select").val();
+        var unitType = units[type].type;
+
+        if (start_time && end_time && type) {
+            url += "?start_date=" + start_time + "&end_date=" + end_time + "&type=" + type;
+            window.open(url, "_blank");
+        } else {
+            alert("请选择参数");
+        }
+    },
+    showData: function () {
         var id = $("#unit_select").val();
         var curUnit = units[id];
 
         $("#type_title").text(curUnit.name);
 
     },
-    createSelect: function(list) {
+    createSelect: function (list) {
         var that = this;
         var select = $("#unit_select").empty();
         var html = '';
@@ -158,7 +175,7 @@ var page = {
         select.append(html);
         that.showData();
     },
-    dealOptionData: function(list) {
+    dealOptionData: function (list) {
         var newList = [];
         for (var i = 0; i < list.length; i++) {
             var type = list[i].lifttype.substring(0, 1);
@@ -182,7 +199,7 @@ var page = {
     },
     //数据
     levelObj: null,
-    setData: function(data) {
+    setData: function (data) {
         $("#level_table").hide();
         $("#level_table_o").hide();
         $("#level_table_n").hide();
@@ -202,9 +219,9 @@ var page = {
         }
     },
     // 获取测试单元
-    getList: function() {
+    getList: function () {
         var that = this;
-        ajax.queryUnits(function(callback) {
+        ajax.queryUnits(function (callback) {
             var obj = that.dealOptionData(callback.objects);
             that.unitList = obj;
             that.levelObj = virtualChartData(obj);
@@ -212,10 +229,10 @@ var page = {
 
         });
     },
-    queryDataCount: function() {
+    queryDataCount: function () {
         var sendData = {};
     },
-    showUnitSelect: function() {
+    showUnitSelect: function () {
         var list = [];
         var that = this;
         var html = "";
@@ -229,7 +246,7 @@ var page = {
         that.showData();
     },
 
-    getData: function() {
+    getData: function () {
         var that = this;
         var sendData = {};
         var start_time = $("#start_time").val();
@@ -242,7 +259,7 @@ var page = {
             sendData.end_date = end_time;
             sendData.type = type;
 
-            ajax.queryDataCount(sendData, function(cb) {
+            ajax.queryDataCount(sendData, function (cb) {
                 var list = getChartData(cb.objects, unitType);
                 that.setData(list);
                 createChart(list);
@@ -253,7 +270,7 @@ var page = {
 
 page.init();
 
-var createChart = function(data) {
+var createChart = function (data) {
     // Create the chart
     Highcharts.chart('chart_container', {
         chart: {

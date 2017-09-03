@@ -99,3 +99,7 @@
 #level_table_o td {
     width: 100px;
 }
+
+#download_btn {
+    float: right;
+}
