@@ -344,6 +344,7 @@ var createChart = function(data, wrap) {
         series: data.series
     };
     myChart.setOption(option);
+    
 };
 
 

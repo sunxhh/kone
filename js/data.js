@@ -549,6 +549,14 @@ function () {
         updateDescription: function (data, success, fail) {
             var url = "/updateDescription";
             sendAjax(url, data, success, fail, "post");
+        },
+        // 获取选择的视频
+        // start_date 起始时间
+        // end_date 结束时间
+        // 时间是utc时间  
+        replay: function (data, success, fail) {
+            var url = "/replay";
+            sendAjax(url, data, success, fail, "post");
         }
     };
 

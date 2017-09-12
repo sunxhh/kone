@@ -31,9 +31,13 @@
             </div>
         </div>
         <div class="main-body" style="margin-top: 20px;text-align: center;margin-bottom: 20px;">
-            <video src="/video/testVideo.webm" controls="controls" width="720" height="540" id="video1">
-                your browser does not support the video tag
+            <video width="800" height="500" controls="controls" id="player" loop="loop" autoplay>
+                <source src="http://192.168.1.111:82/101" type='video/ogg'></source>
+                您的浏览器不支持播放该视频
             </video>
+            <!-- <video src="/video/testVideo.webm" controls="controls" width="720" height="540" id="video1">
+                your browser does not support the video tag
+            </video> -->
         </div>
     </div>
     <script type="text/tpl" id="popu">
