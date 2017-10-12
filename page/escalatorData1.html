@@ -4,7 +4,7 @@
 <head>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="../js/config.js" css="/manage/css/user.css,css/escalatorData.css" js="js/data.js,/js/echarts.min.js,/js/sockjs-0.3.min.js,/js/move.js,/js/leftMenu.js;js/escalatorDataChart.js;/js/head.js,js/escalatorData1.js"></script>
+    <script type="text/javascript" src="../js/config.js" css="/manage/css/user.css,css/escalatorData.css" js="js/data.js,/js/calendar/jedate.min.js,/js/echarts.min.js,/js/sockjs-0.3.min.js,/js/move.js,/js/leftMenu.js;js/escalatorDataChart.js;/js/head.js,js/escalatorData1.js"></script>
 </head>
 
 <body>
@@ -29,6 +29,7 @@
                 梯号：<span id="lift_name_span"></span>
                 扶手带类型：<span id="lift_type_span"></span>
                 生产线：<span id="lift_beltline_span"></span>
+                <a class="com-btn3" id="view_video">查看视屏</a>
             </div>
             <div class="btn-div" style="padding-bottom: 0px;text-align: left;margin-right: 80px; float: right;display: none;">
                 <span>请输入要查询的梯号：</span>
@@ -79,9 +80,24 @@
             <span>{#id}</span>
         </label>
     </script>
-    <script type="text/tap" id="chart_wrap_popu">
+    <script type="text/tpl" id="chart_wrap_popu">
         <div style="margin:30px;" class="chart-div bg-chart-b" id="chartWrap_{#type}">
             <!--<div class="bg-chart-b"></div>-->
+        </div>
+    </script>
+    <script type="text/tpl" id="view_video_popu">
+        <div>
+            <div class="view-video-form">
+                <span>开始时间:</span>
+                <input type="text" id="start_time" placeholder="请选择开始日期">
+            </div>
+            <div class="view-video-form">
+                <span>结束时间:</span>
+                <input type="text" id="end_time" placeholder="请选择结束日期">
+            </div>
+            <div style="text-align:center;margin-top: 20px;">
+                <a class="com-btn3 submit-btn">确定</a>
+            </div>
         </div>
     </script>
 </body>

@@ -27,20 +27,20 @@ var arithmeticType = {
     1: ["iso", "rms"]
 };
 
-var aRadio = function(data) {
+var aRadio = function (data) {
     var self = this;
     var html = tpl.getDataTpl("ari_unit", data);
     var label = this.label = $(html).filter("label")[0];
     this.data = data;
     var input = this.input = $(label).find("input")[0];
 
-    input.onclick = function() {
+    input.onclick = function () {
         self.sendCommand();
     };
 };
 aRadio.prototype = {
     // 发送命令
-    sendCommand: function() {
+    sendCommand: function () {
         var wrap = $(".test-unit-left");
         var input = $(this.label).find("input");
         if (input.prop("checked")) {
@@ -50,7 +50,7 @@ aRadio.prototype = {
             this.stop();
         }
     },
-    start: function() {
+    start: function () {
         var checked = unitbox.getChecked();
         if (checked) {
             if (checked.data.lifttype.substring(0, 1) == 1) {
@@ -58,7 +58,7 @@ aRadio.prototype = {
             }
         }
     },
-    stop: function() {
+    stop: function () {
         var checked = unitbox.getChecked();
         if (checked) {
             if (checked.data.lifttype.substring(0, 1) == 1) {
@@ -68,7 +68,7 @@ aRadio.prototype = {
     }
 };
 
-var arithmeticOpt = function() {
+var arithmeticOpt = function () {
     for (var type in arithmeticType) {
         var list = arithmeticType[type];
         for (var i = 0; i < list.length; i++) {
@@ -101,15 +101,15 @@ function getVibrationType() {
 };
 
 // 生成CheckBox
-var unitbox = (function() {
+var unitbox = (function () {
     var boxList = {};
 
-    var box = function(data) {
+    var box = function (data) {
         return new box.prototype.init(data);
     };
 
     box.prototype = {
-        init: function(data) {
+        init: function (data) {
             var self = this;
             var html = tpl.getDataTpl("test_unit", data);
             var label = this.label = $(html).filter("label")[0];
@@ -118,11 +118,11 @@ var unitbox = (function() {
             var type = testDeviceTypeMap[data.lifttype.substring(0, 1)];
             this.data.deviceType = type;
 
-            input.onclick = function() {
+            input.onclick = function () {
                 self.sendCommand();
             };
         },
-        getSpeed: function() {
+        getSpeed: function () {
             var list = $(".test-unit-right").find("input");
             var ll = [];
             for (var i = 0; i < list.length; i++) {
@@ -133,7 +133,7 @@ var unitbox = (function() {
             return ll.join(',');
         },
         // 开始获取数据
-        start: function() {
+        start: function () {
             var data = __self.getChecked().data;
             if (!data) {
                 page.resetChartWrap();
@@ -148,16 +148,15 @@ var unitbox = (function() {
                 testrecordid: urlData.id
             };
 
-            if(sendData.lifttype.substring(0,1) == '4'){
+            if (sendData.lifttype.substring(0, 1) == '4') {
                 // 能耗 lifttype 转成00上行 和01下行
-                if(sendData.runType == -1){
+                if (sendData.runType == -1) {
                     sendData.lifttype = "01";
-                }
-                else{
+                } else {
                     sendData.lifttype = "00";
                 }
             }
-            
+
 
             if (this.getSpeed()) {
                 sendData.speedype = this.getSpeed();
@@ -177,13 +176,13 @@ var unitbox = (function() {
                 }
             }
 
-            ajax.queryData(sendData, function(data) {
+            ajax.queryData(sendData, function (data) {
                 page.creatLine(data.objects);
 
             });
         },
         // 发送命令
-        sendCommand: function() {
+        sendCommand: function () {
             var checkbox = $(this.label).find("input");
             var type = this.data.lifttype.substring(0, 1);
             if (checkbox.prop("checked")) {
@@ -194,7 +193,7 @@ var unitbox = (function() {
             }
             this.start();
         },
-        cancelChecked: function() {
+        cancelChecked: function () {
             var curId = this.data.id;
             for (var id in boxList) {
                 var list = boxList[id];
@@ -206,7 +205,7 @@ var unitbox = (function() {
                     }
 
                     if ($(obj.label).find("input").prop("checked") && !obj.data.isArithmetic && type != "2") {
-                        
+
                         if (obj.data != this.data) {
                             $(obj.label).find("input").prop("checked", false);
                         }
@@ -219,7 +218,7 @@ var unitbox = (function() {
 
     box.prototype.init.prototype = box.prototype;
 
-    var __self = function(list, fn) {
+    var __self = function (list, fn) {
         for (var i = 0; i < list.length; i++) {
             var obj = list[i];
             var b = box(obj);
@@ -234,7 +233,7 @@ var unitbox = (function() {
 
 
     __self.boxList = boxList;
-    __self.getChecked = function() {
+    __self.getChecked = function () {
         for (var id in boxList) {
             var list = boxList[id];
             for (var i = 0; i < list.length; i++) {
@@ -262,9 +261,9 @@ function buildFloatLayer(data) {
         width: data.width || "500px",
         title: data.title,
         content: data.content
-    }, function(p) {
+    }, function (p) {
         var jQcloseBtn = $(p.wrap).find(".popu-title .close-popu");
-        jQcloseBtn.click(function() {
+        jQcloseBtn.click(function () {
             p.close();
         });
         data.initFn && data.initFn(p);
@@ -274,40 +273,40 @@ window.buildFloatLayer = buildFloatLayer;
 
 
 var page = {
-    init: function() {
+    init: function () {
         this.bindle();
         this.getList();
 
         this.setLiftData();
     },
-    resetChartWrap: function() {
+    resetChartWrap: function () {
         $("#chart_list_wrap").empty();
         $("#chart_btn_wrap").empty();
         $("#chart_list_wrap").append(tpl.getDataTpl("chart_wrap_popu", {
             type: 1
         }));
     },
-    emptyChartWrap: function() {
+    emptyChartWrap: function () {
         $("#chart_list_wrap").empty();
         $("#chart_btn_wrap").empty();
     },
-    creatLine: function(data) {
+    creatLine: function (data) {
         this.emptyChartWrap();
         var formatedData = createChartsList(data);
     },
-    setLiftData: function() {
+    setLiftData: function () {
         $("#lift_name_span").text(liftData.name);
         $("#lift_type_span").text(liftData.handstraptype);
         $("#lift_beltline_span").text(liftData.productline);
     },
-    bindle: function() {
+    bindle: function () {
         var self = this;
-        $(".tab-div a").click(function() {
+        $(".tab-div a").click(function () {
             $(".tab-div a").removeClass("selected");
             $(this).addClass("selected");
             self.showUnit();
         });
-        $("#chart_btn_wrap").click(function(e) {
+        $("#chart_btn_wrap").click(function (e) {
             let target = e.target;
             if ($(target).hasClass('chart-btn')) {
                 let cid = $(target).attr('cid');
@@ -320,8 +319,11 @@ var page = {
                 }
             }
         });
+        $("#view_video").click(function () {
+            self.viewVideoPopu();
+        });
     },
-    createSpeedUnit: function() {
+    createSpeedUnit: function () {
         var type = 2;
         var wrap = $(".test-unit-right");
         wrap.empty();
@@ -333,7 +335,7 @@ var page = {
             wrap.append(list[i].label);
         }
     },
-    showUnit: function() {
+    showUnit: function () {
         var type = $(".tab-div .selected").attr("type");
         var wrap = $(".test-unit-left");
         wrap.empty();
@@ -346,11 +348,11 @@ var page = {
         }
     },
     // 获取当前测试步骤的测试单元
-    getList: function() {
+    getList: function () {
         var that = this;
-        ajax.queryUnits(function(callback) {
+        ajax.queryUnits(function (callback) {
             var obj = callback.objects;
-            ajax.getSteps(liftData.testjobid, function(cb) {
+            ajax.getSteps(liftData.testjobid, function (cb) {
                 var steps = cb.objects.steps;
                 var unitsList = [];
                 var list = [];
@@ -388,15 +390,57 @@ var page = {
                         }
                     }
                 }
-                unitbox(list, function() {
+                unitbox(list, function () {
                     arithmeticOpt();
                 });
                 that.showUnit();
                 that.createSpeedUnit();
                 that.unitList = list;
             });
-
         });
+    },
+    viewVideoPopu: function () {
+        var self = this;
+        var data = {
+            title: "查看视频回放",
+            width: "335px",
+            content: tpl.getDataTpl("view_video_popu", {}),
+            initFn: function (p) {
+                var wrap = p.wrap;
+                setTimeout(function () {
+                    jeDate({
+                        dateCell: "#start_time", //isinitVal:true,
+                        format: "YYYY-MM-DD  hh:mm:ss",
+                        isTime: true, //isClear:false,
+                        maxDate: new Date().format("YYYY-MM-DD hh:mm:ss")
+                    });
+                    jeDate({
+                        dateCell: "#end_time", //isinitVal:true,
+                        format: "YYYY-MM-DD  hh:mm:ss",
+                        isTime: true, //isClear:false,
+                        maxDate: new Date().format("YYYY-MM-DD hh:mm:ss")
+                    });
+                }, 10);
+                $(wrap).find(".submit-btn").click(function () {
+                    var startTime = $("#start_time").val();
+                    var endTime = $("#end_time").val();
+                    if (!(startTime && endTime)) {
+                        alert("请选择时间！");
+                        return;
+                    }
+                    ajax.replay({
+                        start_date: new Date(startTime).toUTCString(),
+                        end_date: new Date(endTime).toUTCString()
+                    }, function () {
+                        alert("查看成功");
+                        p.close();
+                    }, function () {
+                        alert("查看失败");
+                    });
+                });
+            }
+        };
+        buildFloatLayer(data);
     }
 };
 

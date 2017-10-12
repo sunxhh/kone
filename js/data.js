@@ -556,7 +556,7 @@ function () {
         // 时间是utc时间  
         replay: function (data, success, fail) {
             var url = "/replay";
-            sendAjax(url, data, success, fail, "post");
+            sendAjax(url, data, success, fail, "get");
         }
     };
 

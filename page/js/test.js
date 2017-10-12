@@ -153,7 +153,9 @@ var handSocketMsg = function(e) {
                 // 与硬件连接正常
                 showError1(data.codeInfo);
             }
-            checking.checkResult(data);
+            setTimeout(function(){
+                checking.checkResult(data);
+            },5000);
         },
         // 测试状态类-type(test)
         test: function(data) {
@@ -264,7 +266,7 @@ var handSocketMsg = function(e) {
             if (data.code == '-54' && ~data.codeInfo.indexOf("检测开梯中")) {
                 return;
             }
-            if (~data.codeInfo.indexOf("方向") && ~data.codeInfo.indexOf("错误")) {
+            if ((~data.codeInfo.indexOf("方向") && ~data.codeInfo.indexOf("错误"))||(~data.codeInfo.indexOf("速度异常"))) {
                 if (isTesting) {
                     testStep.stopStepInit();
                 } else {

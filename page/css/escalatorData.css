@@ -79,3 +79,17 @@
 .chart-wrap{
     height: 220px;
 }
+#view_video{
+    float: right;
+    margin-right: 30px;
+}
+.view-video-form{
+    margin: 10px 15px;
+
+}
+.mark-div{
+    z-index: 100 !important;
+}
+.popu-div{
+    z-index: 105 !important;
+}
