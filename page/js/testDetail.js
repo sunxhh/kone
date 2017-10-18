@@ -329,6 +329,7 @@ pageStart(function (ajax) {
                 var data = cb.objects;
                 $("#test_time").text(data.testdate);
                 $("#test_name").text(data.name);
+                $("#test_operator").text(data.testoperator);
                 that.createStepTable(data.teststeps);
                 that.createRetestTable(data.retestrecords);
                 that.createPorformance(data.performanceset);
@@ -355,7 +356,6 @@ pageStart(function (ajax) {
             this.retestTable = treeTable(data, retestTableOption);
         },
         createPorformance: function (data) {
-            $("#test_operator").text(data.operator);
             var list = validList.concat(levelList, vibrationList, noiseList, railVibrationList);
             createTable(list, '#porformance_table', 3, function (td, obj) {
                 var text = obj.name + " : " + (data[obj.sendId] ? data[obj.sendId] : "");
@@ -422,7 +422,19 @@ pageStart(function (ajax) {
                             levelEle.css("color", "red");
                         } else {
                             ele.css("color", "black");
+                            levelEle.css("color", "black");
+                        }
+                    }
+                    if (~id.indexOf('engvalue')) {
+                        if (leval.toLocaleLowerCase() == "e") {
+                            ele.css("color", "red");
+                            levelEle.css("color", "red");
+                        } else if(leval.toLocaleLowerCase() == "a+++"){
+                            ele.css("color", "green");
+                            levelEle.css("color", "green");
+                        }else{
                             ele.css("color", "black");
+                            levelEle.css("color", "black");
                         }
                     }
                 } else {

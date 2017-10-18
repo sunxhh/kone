@@ -159,6 +159,9 @@ pageStart(function (ajax) {
         },
         bindle: function () {
             var self = this;
+            $("#seach_btn").click(function () {
+                self.getList();
+            });
         },
         removeTr: function (td, obj) {
             var self = this;
@@ -184,9 +187,19 @@ pageStart(function (ajax) {
                 currentpage: page.pageIndex,
                 pagesize: page.pageSize
             };
-
+            var key = $("#search_input").val().trim();
+            if (key) {
+                data.liftno = key;
+            }
             ajax.getRecords(data, function (callback) {
                 var obj = callback.objects;
+                if (!obj) {
+                    obj = {
+                        pageCount: 1,
+                        currentPage: page.pageInde,
+                        entityList: []
+                    };
+                }
                 pager.set(obj.pageCount, obj.currentPage, 6, page.pageSize);
                 pager.write('#pager');
                 that.buildTable(obj.entityList);
