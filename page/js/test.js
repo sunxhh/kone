@@ -36,7 +36,6 @@ function showAlert(text, fn) {
         }),
         initFn: function(p) {
             var wrap = p.wrap;
-
             $(wrap).find(".submit-btn").click(function() {
                 showAlert.isShow = false;
                 testStep.offledwarn();
@@ -491,8 +490,9 @@ var connect = (function() {
         ws.onclose = function(e) {
             var data = e.data;
             ws = null;
-            showError1("与服务器断开连接");
+            //showError1("与服务器断开连接");
             alert("与服务器断开连接");
+            __connect();
         };
     }
 
@@ -716,7 +716,7 @@ var testStep = {
         window.onbeforeunload = function() {
             if (ws && !testStep.isEndTest) {
                 var data = {
-                    "optType": "end_collect",
+                    "optType": "abort_collect",
                     "liftno": liftData.liftno,
                     "enable": true
                 };
@@ -1069,4 +1069,4 @@ setInterval(function() {
     if (ws) {
         ws.send('{"action":"heartbeat-web"}');
     }
-}, 30000);
+}, 5000);

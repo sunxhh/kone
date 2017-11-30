@@ -16,7 +16,7 @@ var headerClass = (function() {
 
     function changeLanguage(type) {
         var url = location.href;
-        var pathname = location.pathname;
+        var pathname = location.pathname + location.search;
         type = type || "ch"
         if (type == "en") {
             if (~url.indexOf("/en/")) {
