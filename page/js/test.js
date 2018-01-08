@@ -16,9 +16,9 @@ function buildFloatLayer1(data) {
         width: data.width || "500px",
         title: data.title,
         content: data.content
-    }, function(p) {
+    }, function (p) {
         var jQcloseBtn = $(p.wrap).find(".popu-title .close-popu");
-        jQcloseBtn.click(function() {
+        jQcloseBtn.click(function () {
             p.close();
         });
         data.initFn && data.initFn(p);
@@ -34,9 +34,9 @@ function showAlert(text, fn) {
         content: tpl.getDataTpl("test_error", {
             text: text
         }),
-        initFn: function(p) {
+        initFn: function (p) {
             var wrap = p.wrap;
-            $(wrap).find(".submit-btn").click(function() {
+            $(wrap).find(".submit-btn").click(function () {
                 showAlert.isShow = false;
                 testStep.offledwarn();
                 p.close();
@@ -54,7 +54,7 @@ var ws;
 var CHECKING_STATUS = true;
 
 $.extend(tpl.format, {
-    isHide: function(v) {
+    isHide: function (v) {
         if (v) {
             return "display:none";
         }
@@ -72,28 +72,28 @@ var needCheck = {
     check: {
         name: "到位信号压线检测",
         id: "check_singal",
-        create: function() {
+        create: function () {
             return createChecking(this);
         }
     },
     device: {
         name: "中控板通讯检测",
         id: "check_device",
-        create: function() {
+        create: function () {
             return createChecking(this);
         }
     },
     isVibReady: {
         name: "振动信号检测",
         id: "check_visible",
-        create: function() {
+        create: function () {
             return createChecking(this);
         }
     },
     direction: {
         name: "电梯运行方向检测",
         id: "check_direction",
-        create: function() {
+        create: function () {
             return createChecking(this);
         }
     },
@@ -101,7 +101,7 @@ var needCheck = {
         name: "电梯速度检测",
         id: "check_speed",
         isHide: true,
-        create: function() {
+        create: function () {
             return createChecking(this);
         }
     }
@@ -110,7 +110,7 @@ var needCheck = {
 var ignoreErrorCodeList = ['06'];
 
 // 处理返回的图表数据
-var handSocketMsg = function(e) {
+var handSocketMsg = function (e) {
     var data = e.data ? e.data : e;
     data = JSON.parse(data);
 
@@ -129,13 +129,13 @@ var handSocketMsg = function(e) {
         //     }
         // },
         // WebSocket通信类-type(websocket)
-        websocket: function(data) {
+        websocket: function (data) {
             if (~data.codeInfo.indexOf("成功")) {
 
             }
         },
         // 后台与硬件通许类-type(device)
-        device: function(data) {
+        device: function (data) {
             if (data.code == 0) {
                 // 与硬件连接正常
                 checking.checkResult(data);
@@ -144,7 +144,7 @@ var handSocketMsg = function(e) {
                 checking.checkResult(data);
             }
         },
-        isVibReady: function() {
+        isVibReady: function () {
             if (data.code == 1) {
                 return;
             }
@@ -152,12 +152,12 @@ var handSocketMsg = function(e) {
                 // 与硬件连接正常
                 showError1(data.codeInfo);
             }
-            setTimeout(function(){
+            setTimeout(function () {
                 checking.checkResult(data);
-            },5000);
+            }, 5000);
         },
         // 测试状态类-type(test)
-        test: function(data) {
+        test: function (data) {
             if (data.codeInfo == "next") {
                 if (!showAlert.isShow && !checking.p) {
                     allUserTime += showChart.nowTime;
@@ -176,11 +176,11 @@ var handSocketMsg = function(e) {
             }
         },
         // 后台指令类-type(command)
-        command: function(data) {
+        command: function (data) {
 
         },
         // 测试单元类-type(testunit)
-        testunit: function(data) {
+        testunit: function (data) {
             if (data.code == 0) {
 
             } else {
@@ -191,7 +191,7 @@ var handSocketMsg = function(e) {
 
         },
         // 测试步骤类-type(teststep)
-        teststep: function(data) {
+        teststep: function (data) {
             if (data.code == 0) {
 
             } else {
@@ -201,11 +201,11 @@ var handSocketMsg = function(e) {
             }
         },
         // 扶梯信息类-type(lift)
-        lift: function(data) {
+        lift: function (data) {
 
         },
         // 检测到位信号
-        check: function(data) {
+        check: function (data) {
             checking.checkResult(data);
             if (data.code != 0) {
                 alert(data.codeInfo);
@@ -213,7 +213,7 @@ var handSocketMsg = function(e) {
             }
         },
         // 检测速度
-        speed: function(data) {
+        speed: function (data) {
             checking.checkResult(data);
             if (data.code != 0) {
                 alert(data.codeInfo);
@@ -221,14 +221,14 @@ var handSocketMsg = function(e) {
             }
         },
         // 电梯运行方向
-        direction: function(data) {
+        direction: function (data) {
             checking.checkResult(data);
             if (data.code != 0) {
                 alert(data.codeInfo);
                 showError1(data.codeInfo);
             }
         },
-        deviceError: function(data) {
+        deviceError: function (data) {
             //alert(data.codeInfo);
             if (~ignoreErrorCodeList.indexOf(data.errorCode)) {
                 return;
@@ -246,13 +246,13 @@ var handSocketMsg = function(e) {
                 }
             }
             if (!showAlert.isShow) {
-                showAlert(data.errorInfo, function() {
+                showAlert(data.errorInfo, function () {
                     checking();
                 });
             }
 
         },
-        alertType: function(data) {
+        alertType: function (data) {
             //alert(data.codeInfo);
             showError1(data.codeInfo);
             if (showChart.recordTime) {
@@ -261,11 +261,11 @@ var handSocketMsg = function(e) {
                 alert(data.codeInfo);
             }
         },
-        alarm: function(data) {
+        alarm: function (data) {
             if (data.code == '-54' && ~data.codeInfo.indexOf("检测开梯中")) {
                 return;
             }
-            if ((~data.codeInfo.indexOf("方向") && ~data.codeInfo.indexOf("错误"))||(~data.codeInfo.indexOf("速度异常"))) {
+            if ((~data.codeInfo.indexOf("方向") && ~data.codeInfo.indexOf("错误")) || (~data.codeInfo.indexOf("速度异常"))) {
                 if (isTesting) {
                     testStep.stopStepInit();
                 } else {
@@ -274,7 +274,7 @@ var handSocketMsg = function(e) {
                     }
                 }
                 if (!showAlert.isShow) {
-                    showAlert(data.codeInfo, function() {
+                    showAlert(data.codeInfo, function () {
                         checking();
                     });
                 }
@@ -302,12 +302,12 @@ var handSocketMsg = function(e) {
 
 
 // 生成图表
-var showChart = (function() {
+var showChart = (function () {
     // 图表总共显示的点数
     var CHART_COUNT = 600;
 
     // 生成图表
-    var createChart = function(wrap, data) {
+    var createChart = function (wrap, data) {
         var list = data;
         $(wrap).empty();
         var wrap = $(wrap)[0];
@@ -369,7 +369,7 @@ var showChart = (function() {
 
 
     // 生成图表
-    var __showChart = function(data) {
+    var __showChart = function (data) {
         var list = data.Data;
         var time = data.Time;
         if (!list) {
@@ -432,16 +432,16 @@ var showChart = (function() {
 })();
 
 // 连接socket
-var connect = (function() {
+var connect = (function () {
     var TRY_RECONNECT = 0;
     var TRY_RECONNECT_MAX = 3;
     // 正在连接socket的动画显示
-    var connecting = function(fn) {
+    var connecting = function (fn) {
         var data = {
             title: "",
             width: "300px",
             content: tpl.getDataTpl("connecting", {}),
-            initFn: function(p) {
+            initFn: function (p) {
                 var wrap = p.wrap;
                 var connectInfo = $(wrap).find("#connect_info");
 
@@ -452,6 +452,7 @@ var connect = (function() {
     };
     window.connecting = connecting;
 
+
     function __connect() {
         if ('WebSocket' in window) {
             var href = "ws://" + location.host + "/websck.2x";
@@ -460,8 +461,8 @@ var connect = (function() {
             ws = new SockJS(location.origin + "/sockjs/websck/info.2x");
         }
 
-        connecting(function(p) {
-            ws.onopen = function(e) {
+        connecting(function (p) {
+            ws.onopen = function (e) {
                 if (e.type == "open") {
                     p.close();
                     TRY_RECONNECT = 0;
@@ -469,7 +470,7 @@ var connect = (function() {
                 }
             };
 
-            ws.onerror = function() {
+            ws.onerror = function () {
                 alert("socket连接失败,正在尝试重连");
                 p.close();
                 TRY_RECONNECT++;
@@ -481,17 +482,24 @@ var connect = (function() {
 
         });
 
-        ws.onmessage = function(e) {
+        ws.onmessage = function (e) {
             handSocketMsg(e);
         };
 
 
 
-        ws.onclose = function(e) {
+        ws.onclose = function (e) {
             var data = e.data;
             ws = null;
             //showError1("与服务器断开连接");
             alert("与服务器断开连接");
+            if (isTesting) {
+                testStep.stopStepInit();
+            } else {
+                if (checking.p) {
+                    checking.p.close();
+                }
+            }
             __connect();
         };
     }
@@ -503,7 +511,7 @@ var timer = null;
 var isTesting = false;
 
 // 正在硬件检测
-var checking = (function() {
+var checking = (function () {
     var checkedCount = 0;
     var count = 0;
     var typeList = [];
@@ -530,11 +538,11 @@ var checking = (function() {
         count = list.length;
     }
 
-    var createCountdown = function() {
+    var createCountdown = function () {
 
     }
     var isStartCheck = true;
-    var __checking = function() {
+    var __checking = function () {
         var t;
         isStartCheck = false;
         checkedCount = 0;
@@ -547,27 +555,27 @@ var checking = (function() {
             title: "硬件检测",
             width: "800px",
             content: tpl.getDataTpl("check_popu", {}),
-            initFn: function(p) {
+            initFn: function (p) {
                 __checking.p = p;
                 var wrap = p.wrap;
                 $(wrap).addClass('check-notice')
                 createCheckUnit($(wrap).find(".check-wrapper"));
 
                 // 开始检测
-                $(wrap).find("#start_test").click(function() {
+                $(wrap).find("#start_test").click(function () {
                     __checking.close();
                     testStep.startTest();
                     isStartCheck = true;
                 });
 
                 // 重新检测
-                $(wrap).find("#recheck_test").click(function() {
+                $(wrap).find("#recheck_test").click(function () {
                     __checking.close();
                     checking();
                 });
 
                 // 取消倒计时
-                $(wrap).find("#cancel_test").click(function() {
+                $(wrap).find("#cancel_test").click(function () {
                     if (timer) {
                         __checking.endCountdown();
                         $("#start_test").show();
@@ -578,18 +586,18 @@ var checking = (function() {
         };
 
         buildFloatLayer(data);
-        setTimeout(function() {
+        setTimeout(function () {
             testStep.checkTest();
         }, 3000);
     }
 
 
     var defaultTime = 20;
-    __checking.close = function() {
+    __checking.close = function () {
         __checking.p.close();
         __checking.p = null;
     }
-    __checking.startCountdown = function() {
+    __checking.startCountdown = function () {
         var countdown = $("#countdown_wrap");
         defaultTime = 20;
         $("#cancel_test").show();
@@ -597,7 +605,7 @@ var checking = (function() {
         if (timer) {
             return false;
         }
-        timer = setInterval(function() {
+        timer = setInterval(function () {
             defaultTime = defaultTime - 1;
 
             $("#countdown_span").text(defaultTime);
@@ -608,7 +616,7 @@ var checking = (function() {
             }
         }, 1000);
     }
-    __checking.endCountdown = function() {
+    __checking.endCountdown = function () {
         $("#countdown_wrap").hide();
         $("#cancel_test").hide();
         if (!timer) {
@@ -617,7 +625,7 @@ var checking = (function() {
         clearInterval(timer);
         timer = null;
     }
-    __checking.hasNoise = function(list) {
+    __checking.hasNoise = function (list) {
         for (var i = 0; i < list.length; i++) {
             if (list[i].lifttype[0] == "3") {
                 return true;
@@ -625,7 +633,7 @@ var checking = (function() {
         }
         return false;
     }
-    __checking.checkResult = function(data) {
+    __checking.checkResult = function (data) {
         if (!~checkList.indexOf(data.type)) {
             return;
         }
@@ -683,7 +691,7 @@ var checking = (function() {
         }
     };
 
-    __checking.file = function(text) {
+    __checking.file = function (text) {
         checking.checkResult({
             type: "check",
             code: 1,
@@ -708,12 +716,18 @@ var checking = (function() {
 
 // 测试步骤
 var testStep = {
-    init: function() {
+    init: function () {
+        var JQwrap = $(".test-step-tab-wrap");
+        var curStep = JQwrap.find(".current-step");
+        if (curStep.length > 0) {
+            checking();
+            return;
+        }
         this.closePage();
         this.getEnableSteps();
     },
-    closePage: function() {
-        window.onbeforeunload = function() {
+    closePage: function () {
+        window.onbeforeunload = function () {
             if (ws && !testStep.isEndTest) {
                 var data = {
                     "optType": "abort_collect",
@@ -728,16 +742,15 @@ var testStep = {
         }
     },
     // 获取已启用步骤配置
-    getEnableSteps: function() {
+    getEnableSteps: function () {
         var that = this;
-        ajax.getEnableSteps(function(cd) {
+        ajax.getEnableSteps(function (cd) {
             var data = cd.objects;
             that.create(data);
-
         });
     },
     // 生成步骤
-    create: function(data) {
+    create: function (data) {
         var JQwrap = $(".test-step-tab-wrap");
         JQwrap.empty();
 
@@ -757,7 +770,7 @@ var testStep = {
         this.nextStep();
     },
     // 开始下一步测试
-    nextStep: function() {
+    nextStep: function () {
         var JQwrap = $(".test-step-tab-wrap");
         var curStep = JQwrap.find(".current-step");
         if (curStep.length == 0) {
@@ -778,7 +791,7 @@ var testStep = {
 
     },
     // 是否需要到位信号
-    checkNeedSign: function() {
+    checkNeedSign: function () {
         var JQwrap = $(".test-step-tab-wrap");
         var curStep = JQwrap.find(".current-step");
         var obj = curStep[0].data;
@@ -799,7 +812,7 @@ var testStep = {
         return false;
     },
     // 是否有振动
-    hasVisible: function() {
+    hasVisible: function () {
         var JQwrap = $(".test-step-tab-wrap");
         var curStep = JQwrap.find(".current-step");
         var obj = curStep[0].data;
@@ -817,7 +830,7 @@ var testStep = {
         return false;
     },
     // 设置通用的数据
-    setComInfo: function() {
+    setComInfo: function () {
         var JQwrap = $(".test-step-tab-wrap");
         var curStep = JQwrap.find(".current-step");
         var obj = curStep[0].data;
@@ -845,7 +858,7 @@ var testStep = {
         this.createUnits(units);
     },
     // 生成测试单元
-    createUnits: function(unitIdList) {
+    createUnits: function (unitIdList) {
         var wrap = $(".unit-wrapper");
         var liWrap = $(".test-unit-li-wrapper");
         var html = "";
@@ -861,7 +874,7 @@ var testStep = {
         wrap.append(html);
         liWrap.append(htmlLi);
 
-        wrap.find(".unit-checkbox").click(function(e) {
+        wrap.find(".unit-checkbox").click(function (e) {
             var deviceno = $(this).attr("deviceno");
             var deviceport = $(this).attr("deviceport");
             if (this.checked) {
@@ -873,7 +886,7 @@ var testStep = {
 
     },
     // 开始检测
-    checkTest: function() {
+    checkTest: function () {
         var JQwrap = $(".test-step-tab-wrap");
         var curStep = JQwrap.find(".current-step");
         var obj = curStep[0].data;
@@ -887,7 +900,7 @@ var testStep = {
         isTesting = false;
     },
     // 重新检测
-    recheck: function() {
+    recheck: function () {
         var JQwrap = $(".test-step-tab-wrap");
         var curStep = JQwrap.find(".current-step");
         var obj = curStep[0].data;
@@ -899,7 +912,7 @@ var testStep = {
         ws.send(data);
     },
     // 开始测试
-    startTest: function() {
+    startTest: function () {
         var JQwrap = $(".test-step-tab-wrap");
         var curStep = JQwrap.find(".current-step");
         var obj = curStep[0].data;
@@ -917,17 +930,17 @@ var testStep = {
         isTesting = true;
         this.startTestInit();
     },
-    startTestInit: function() {
+    startTestInit: function () {
         showChart.chart = {};
         var time = showChart.nowTime;
-        showChart.recordTime = setInterval(function() {
+        showChart.recordTime = setInterval(function () {
             time += 1;
             showChart.nowTime = time;
             $("#testtime").text(formatMsecond(time * 1000));
         }, 1000);
     },
     // 停止采集数据
-    stopStep: function() {
+    stopStep: function () {
         if (!ws) {
             alert("连接已断开");
             return false;
@@ -946,7 +959,7 @@ var testStep = {
         data = JSON.stringify(data);
         ws.send(data);
     },
-    stopStepInit: function() {
+    stopStepInit: function () {
         if (showChart.recordTime) {
             clearInterval(showChart.recordTime);
             showChart.recordTime = null;
@@ -954,23 +967,23 @@ var testStep = {
     },
     isEndTest: false,
     // 采集结束 
-    endStep: function() {
+    endStep: function () {
         var data = {
             "optType": "end_collect",
             "liftno": liftData.liftno,
             "enable": true
-                // ,
-                // "stepid": obj.id,
-                // "order": obj.index
+            // ,
+            // "stepid": obj.id,
+            // "order": obj.index
         };
         this.isEndTest = true;
         data = JSON.stringify(data);
         ws.send(data);
-        showEndAlert("如果不需要继续测试，请把上中下三个支架升到原来位置，以防推入电梯时被撞到。", function() {
+        showEndAlert("如果不需要继续测试，请把上中下三个支架升到原来位置，以防推入电梯时被撞到。", function () {
             endTest();
         });
     },
-    virtualNextStep: function() {
+    virtualNextStep: function () {
         var JQwrap = $(".test-step-tab-wrap");
         var curStep = JQwrap.find(".current-step");
         var obj = curStep[0].data;
@@ -982,7 +995,7 @@ var testStep = {
         data = JSON.stringify(data);
         ws.send(data);
     },
-    offledwarn: function() {
+    offledwarn: function () {
         var data = {
             "optType": "offledwarn"
         };
@@ -996,27 +1009,27 @@ window.testStep = testStep;
 
 // 页面初始化
 var page = {
-    init: function() {
+    init: function () {
         // 连接socket
         this.bindle();
         testStep.init();
     },
-    bindle: function() {
-        $("#stop_test").click(function() {
+    bindle: function () {
+        $("#stop_test").click(function () {
             if (!ws) {
                 return false;
             }
             testStep.stopStep();
         });
 
-        $("#end_test").click(function() {
+        $("#end_test").click(function () {
             if (!ws) {
                 return false;
             }
             testStep.endStep();
         });
 
-        $("#next_test").click(function() {
+        $("#next_test").click(function () {
             if (!ws || this.isSendNext) {
                 return false;
             }
@@ -1038,7 +1051,7 @@ function endTest() {
         content: tpl.getDataTpl("end_test_popu", {
             time: formatMsecond(parseInt(allUserTime) * 1000)
         }),
-        initFn: function(p) {
+        initFn: function (p) {
 
         }
     };
@@ -1053,10 +1066,10 @@ function showEndAlert(text, fn) {
         content: tpl.getDataTpl("test_end_alert", {
             text: text
         }),
-        initFn: function(p) {
+        initFn: function (p) {
             var wrap = p.wrap;
 
-            $(wrap).find(".submit-btn").click(function() {
+            $(wrap).find(".submit-btn").click(function () {
                 p.close();
                 fn && fn();
             });
@@ -1065,7 +1078,7 @@ function showEndAlert(text, fn) {
     buildFloatLayer(data);
 }
 
-setInterval(function() {
+setInterval(function () {
     if (ws) {
         ws.send('{"action":"heartbeat-web"}');
     }
