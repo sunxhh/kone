@@ -28,11 +28,17 @@ function buildFloatLayer1(data) {
 // 弹出
 function showAlert(text, fn) {
     showAlert.isShow = true;
+    var isVisible = text.indexOf("振动") !== -1 ? true : false;
+    var smallText = "";
+    if (isVisible) {
+        smallText = "请重新启动振动传感器，如果重启后仍然无法连接，请打开BeeData软件，重新配对网关和传感器。";
+    }
     var data = {
         title: "检测出错",
         width: "800px",
         content: tpl.getDataTpl("test_error", {
-            text: text
+            text: text,
+            smallText: smallText
         }),
         initFn: function (p) {
             var wrap = p.wrap;
@@ -492,7 +498,7 @@ var connect = (function () {
             var data = e.data;
             ws = null;
             //showError1("与服务器断开连接");
-            alert("与服务器断开连接");
+            //alert("与服务器断开连接");
             if (isTesting) {
                 testStep.stopStepInit();
             } else {

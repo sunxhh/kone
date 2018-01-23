@@ -190,7 +190,7 @@
     text-align: center;
     font-size: 120px;
     font-family: "微软雅黑";
-    height: 400px;
+    min-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,4 +201,10 @@
     color: red;
     font-size: 18px;
     margin: 20px;
+}
+
+.test-error-remand {
+    font-size: 20px;
+    color: red;
+    padding-left: 10px;
 }
